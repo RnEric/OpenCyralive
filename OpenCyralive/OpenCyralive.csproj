@@ -44,9 +44,6 @@
     <None Update="resources\images\appicon\appicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="resources\images\appicon\谢拉\appicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="resources\images\appicon\谢拉晚礼服\appicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
