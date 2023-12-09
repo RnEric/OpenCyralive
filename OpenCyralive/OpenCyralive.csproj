@@ -29,6 +29,12 @@
     <None Update="resources\characters\谢拉\normal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="resources\characters\谢拉晚礼服\normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\characters\谢拉晚礼服\smile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\config\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
