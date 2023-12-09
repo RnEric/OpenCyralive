@@ -53,9 +53,6 @@
     <None Update="resources\images\trayicon\trayicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="resources\images\trayicon\谢拉\trayicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="resources\images\trayicon\谢拉晚礼服\trayicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
