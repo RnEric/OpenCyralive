@@ -1,0 +1,80 @@
+﻿<Window x:Class="OpenCyralive.ocSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenCyralive"
+        mc:Ignorable="d"
+        Title="设置" Height="420" Width="550" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="个性化设置" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox Grid.Row="1"  Grid.Column="0" x:Name="oc_hold_position" Content="记住位置" Click="oc_hold_position_Click"/>
+            <CheckBox Grid.Row="1" Grid.Column="1" x:Name="oc_hold_size" Content="记住大小" Click="oc_hold_size_Click"/>
+            <CheckBox Grid.Row="1" Grid.Column="2" x:Name="oc_topmost" Content="保持在最前" Click="oc_topmost_Click"/>
+            <CheckBox x:Name="oc_transparent_window" Grid.Row="2" Grid.Column="0"  Content="透明窗体背景" Click="oc_transparent_window_Click"/>
+            <CheckBox x:Name="oc_translucent" Grid.Row="2" Grid.Column="1" Content="半透明效果" ToolTip="鼠标移出桌宠形象时，桌宠形象变为半透明。" Click="oc_translucent_Click"/>
+            <CheckBox x:Name="oc_tb_show" Grid.Row="2" Grid.Column="2" Content="在任务栏中显示" Click="oc_tb_show_Click"/>
+            <Rectangle Fill="Silver" Margin="0,2,0,0" Grid.Row="3" Grid.Column="0"/>
+            <Rectangle Fill="Silver" Margin="0,2,0,0" Grid.Row="3" Grid.Column="1"/>
+            <Rectangle Fill="Silver" Margin="0,2,0,0" Grid.Row="3" Grid.Column="2"/>
+            <TextBlock Text="对话气泡背景颜色: " Grid.Row="4" Grid.Column="0"/>
+            <Rectangle x:Name="oc_msg_bg" Grid.Row="4" Grid.Column="1" Margin="0,0,0,2" MouseDown="oc_msg_bg_MouseDown" Stroke="Gray"/>
+            <TextBlock Text="对话气泡字体颜色: " Grid.Row="5" Grid.Column="0"/>
+            <Rectangle x:Name="oc_msg_fg" Grid.Row="5" Grid.Column="1" Margin="0,0,0,2" MouseDown="oc_msg_fg_MouseDown" Stroke="Gray"/>
+            <TextBlock Text="对话气泡边框颜色: " Grid.Row="6" Grid.Column="0"/>
+            <Rectangle x:Name="oc_msg_brd" Grid.Row="6" Grid.Column="1" Margin="0,0,0,2" MouseDown="oc_msg_brd_MouseDown" Stroke="Gray"/>
+            <TextBlock Text="对话气泡字体: " Grid.Row="7" Grid.Column="0"/>
+            <ComboBox x:Name="oc_msg_font" Margin="0,0,0,2" Grid.Row="7" Grid.Column="1" DropDownClosed="oc_msg_font_DropDownClosed"/>
+            <CheckBox x:Name="oc_msg_font_bold" Grid.Row ="8" Grid.Column="1" Content="加粗" Click="oc_msg_font_bold_Click"/>
+            <CheckBox x:Name="oc_msg_font_italic" Grid.Row="8" Grid.Column="2" Content="斜体" Click="oc_msg_font_italic_Click"/>
+            <TextBlock Text="对话气泡字体大小: " Grid.Row="9" Grid.Column="0"/>
+            <ComboBox x:Name="oc_msg_font_size" Margin="0,0,0,2" Grid.Row="9" Grid.Column="1" DropDownClosed="oc_msg_font_size_DropDownClosed"/>
+            <Rectangle Fill="Silver" Margin="0,2,0,0" Grid.Row="10" Grid.Column="0"/>
+            <Rectangle Fill="Silver" Margin="0,2,0,0" Grid.Row="10" Grid.Column="1"/>
+            <Rectangle Fill="Silver" Margin="0,2,0,0" Grid.Row="10" Grid.Column="2"/>
+            <TextBlock Grid.Row="11" Grid.Column="0" Text="地区设置: "/>
+            <ComboBox Grid.Row="11" Grid.Column="1" Margin="0,0,0,2" x:Name="oc_hemi">
+                <ComboBoxItem x:Name="oc_hemi_north" Content="北半球" PreviewMouseUp="oc_hemi_north_PreviewMouseUp"/>
+                <ComboBoxItem x:Name="oc_hemi_south" Content="南半球" PreviewMouseUp="oc_hemi_south_PreviewMouseUp"/>
+            </ComboBox>
+            <Button x:Name="oc_schedule" Grid.Row="12" Grid.Column="0"  Margin="5,5,5,0" Content="作息时间" Click="oc_schedule_Click"/>
+            <TextBlock Grid.Row="13" Grid.Column="1" Text="高级设置" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox x:Name="oc_desktop_shortcut" Grid.Row="14" Grid.Column="0" Content="桌面快捷方式" Click="oc_desktop_shortcut_Click"/>
+            <CheckBox Margin="0,0,5,0" Grid.Row="14" Grid.Column="1" x:Name="oc_startmenu_shortcut" Content="开始菜单快捷方式" Click="oc_startmenu_shortcut_Click"/>
+            <CheckBox x:Name="oc_autostart" Grid.Row="14" Grid.Column="2" Content="开机启动" Click="oc_autostart_Click"/>
+            <Button x:Name="oc_restart" Grid.Row="15" Grid.Column="0" Margin="5,5,5,0" Content="重启桌宠" Click="oc_restart_Click"/>
+            <Button x:Name="oc_config_file" Grid.Row="15" Grid.Column="1" Margin="5,5,5,0" Content="打开配置文件" Click="oc_config_file_Click"/>
+            <TextBlock Grid.Row="0" Grid.Column="5" Text="其他信息"/>
+            <Button x:Name="about" Grid.Row="1" Grid.Column="5" Margin="5,5,5,0" Content="关于" Click="about_Click"/>
+            <Button x:Name="os_license" Grid.Row="2" Grid.Column="5" Margin="5,5,5,0" Content="开源许可证" Click="os_license_Click"/>
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,14 @@
+﻿<Window x:Class="OpenCyralive.AboutOC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenCyralive"
+        mc:Ignorable="d"
+        Title="关于OpenCyralive" Height="190" Width="400" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Background="CadetBlue">
+    <Grid>
+        <TextBlock x:Name="oc_logo" HorizontalAlignment="Center" TextWrapping="Wrap" Text="OpenCyralive" TextAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic" Foreground="Yellow" FontSize="22" Margin="0,10,0,0" Cursor="Hand" MouseUp="oc_logo_MouseUp"/>
+        <TextBlock HorizontalAlignment="Center" x:Name="oc_info" TextWrapping="Wrap" Text="" TextAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"/>
+        <Button x:Name="aboutOC_close" Height="20" Width="40" Content="确定" Click="aboutOC_close_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,115,0,0"/>
+    </Grid>
+</Window>
