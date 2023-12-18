@@ -71,7 +71,7 @@
             <CheckBox Margin="0,0,5,0" Grid.Row="14" Grid.Column="1" x:Name="oc_startmenu_shortcut" Content="开始菜单快捷方式" Click="oc_startmenu_shortcut_Click"/>
             <CheckBox x:Name="oc_autostart" Grid.Row="14" Grid.Column="2" Content="开机启动" Click="oc_autostart_Click"/>
             <Button x:Name="oc_restart" Grid.Row="15" Grid.Column="0" Margin="5,5,5,0" Content="重启桌宠" Click="oc_restart_Click"/>
-            <Button x:Name="oc_config_file" Grid.Row="15" Grid.Column="1" Margin="5,5,5,0" Content="打开配置文件" Click="oc_config_file_Click"/>
+            <Button x:Name="oc_config_file" Grid.Row="15" Grid.Column="1" Margin="5,5,5,0" Content="打开所在目录" Click="oc_config_file_Click"/>
             <TextBlock Grid.Row="0" Grid.Column="5" Text="其他信息"/>
             <Button x:Name="about" Grid.Row="1" Grid.Column="5" Margin="5,5,5,0" Content="关于" Click="about_Click"/>
             <Button x:Name="os_license" Grid.Row="2" Grid.Column="5" Margin="5,5,5,0" Content="许可证" Click="os_license_Click"/>

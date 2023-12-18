@@ -520,7 +520,7 @@ namespace OpenCyralive
 
         private void oc_config_file_Click(object sender, RoutedEventArgs e)
         {
-            openThings(res_folder + "\\config", "");
+            openThings(res_folder, "");
         }
     }
 }
