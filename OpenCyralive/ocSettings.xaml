@@ -74,7 +74,7 @@
             <Button x:Name="oc_config_file" Grid.Row="15" Grid.Column="1" Margin="5,5,5,0" Content="打开所在目录" Click="oc_config_file_Click"/>
             <TextBlock Grid.Row="0" Grid.Column="5" Text="其他信息"/>
             <Button x:Name="about" Grid.Row="1" Grid.Column="5" Margin="5,5,5,0" Content="关于" Click="about_Click"/>
-            <Button x:Name="os_license" Grid.Row="2" Grid.Column="5" Margin="5,5,5,0" Content="许可证" Click="os_license_Click"/>
+            <Button x:Name="os_license" Grid.Row="2" Grid.Column="5" Margin="5,5,5,0" Content="许可证/版权信息" Click="os_license_Click"/>
         </Grid>
     </ScrollViewer>
 </Window>
