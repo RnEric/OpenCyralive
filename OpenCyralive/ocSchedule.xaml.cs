@@ -130,5 +130,11 @@ namespace OpenCyralive
             System.Windows.Forms.MessageBox.Show("作息时间已修改", "修改成功", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
             Close();
         }
+
+        private void open_schedule_file_Click(object sender, RoutedEventArgs e)
+        {
+            openThings(res_folder + "\\config\\time.json", "");
+            Close();
+        }
     }
 }

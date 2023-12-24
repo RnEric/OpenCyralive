@@ -84,6 +84,7 @@
             <ComboBox HorizontalAlignment="Left" Grid.Row="8" Grid.Column="7" VerticalAlignment="Top" Width="120"/>
             <Button x:Name="confirm_change" Grid.Row="9" Grid.Column="9" Content="确定" HorizontalAlignment="Left" VerticalAlignment="Top" Click="confirm_change_Click"  Height="20" Width="30"/>
             <Button x:Name="cancel_change" Grid.Row="10" Grid.Column="10" Content="取消" HorizontalAlignment="Left" VerticalAlignment="Top" Click="cancel_change_Click"  Height="20" Width="30"/>
+            <Button x:Name="open_schedule_file" Grid.Row="10" Grid.Column="7" Content="打开配置文件" HorizontalAlignment="Left" VerticalAlignment="Top" Click="open_schedule_file_Click" Height="20"/>
         </Grid>
     </ScrollViewer>
 </Window>
