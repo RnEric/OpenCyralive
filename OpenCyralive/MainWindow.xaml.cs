@@ -19,6 +19,7 @@ using Brushes = System.Windows.Media.Brushes;
 using System.Windows.Media;
 using Brush = System.Windows.Media.Brush;
 using FontFamily = System.Windows.Media.FontFamily;
+using static OpenCyralive.CyraliveOperaScript;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace OpenCyralive
@@ -52,6 +53,7 @@ namespace OpenCyralive
         {
             InitializeComponent();
             System.Windows.Forms.Application.EnableVisualStyles();
+            CyraliveOperaScript_init();
             notifyIcon.Text = "OpenCyralive";
             notifyIcon.MouseClick += (s, e) =>
             {

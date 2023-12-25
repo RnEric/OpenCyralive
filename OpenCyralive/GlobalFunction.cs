@@ -9,6 +9,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Diagnostics;
+using static OpenCyralive.CyraliveOperaScript;
 
 namespace OpenCyralive
 {
@@ -34,8 +35,37 @@ namespace OpenCyralive
         {
             try
             {
-                JsonDocument message_text = JsonDocument.Parse(File.ReadAllText(file_path));
-                return message_text.RootElement.GetProperty("messages")[new Random().Next(0, message_text.RootElement.GetProperty("messages").GetArrayLength())].ToString();
+                JsonDocument message_texts = JsonDocument.Parse(File.ReadAllText(file_path));
+                string message_text = message_texts.RootElement.GetProperty("messages")[new Random().Next(0, message_texts.RootElement.GetProperty("messages").GetArrayLength())].ToString();
+                string final_text = string.Empty;
+                bool msgorfinal()
+                {
+                    bool isvarexists = false;
+                    foreach (string str in CyraliveOperaScriptVar)
+                    {
+                        if (message_text.Contains(str))
+                        {
+                            isvarexists = true;
+                            break;
+                        }
+                    }
+                    return isvarexists;
+                }
+                if (msgorfinal())
+                {
+                    foreach (string str in CyraliveOperaScriptVar)
+                    {
+                        if (message_text.Contains(str))
+                        {
+                            final_text = message_text.Replace(str, CyraliveOperaScriptVarVal[CyraliveOperaScriptVar.IndexOf(str)]);
+                        }
+                    }
+                    return final_text;
+                }
+                else
+                {
+                    return message_text;
+                }
             }
             catch (Exception ex)
             {

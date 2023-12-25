@@ -39,6 +39,7 @@ namespace OpenCyralive
         public ocSettings()
         {
             InitializeComponent();
+            System.Windows.Forms.Application.EnableVisualStyles();
             ocConfig = JsonNode.Parse(File.ReadAllText(res_folder + "\\config\\config.json"));
             if (ocConfig["WindowXY"].ToString() != "")
             {

@@ -134,6 +134,15 @@
     <Folder Include="resources\plugins\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="resources\license\System.DirectoryServices.AccountManagement.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\license\System.Text.Json.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
