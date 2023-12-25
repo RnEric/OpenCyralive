@@ -7,7 +7,7 @@
     <UseWindowsForms>True</UseWindowsForms>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <Authors>Eric Ren</Authors>
-    <Version>1.3</Version>
+    <Version>1.4</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>none</DebugType>
@@ -26,8 +26,7 @@
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-	  <!--
+  <ItemGroup><!--
     <None Update="resources\characters\谢拉\normal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -131,6 +130,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
 	-->
+  
+    <Folder Include="resources\plugins\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="8.0.0" />

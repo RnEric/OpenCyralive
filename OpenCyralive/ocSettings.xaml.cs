@@ -141,6 +141,10 @@ namespace OpenCyralive
             {
                 oc_autostart.IsChecked = true;
             }
+            if (!File.Exists(res_folder + "\\plugins\\moreinfo\\moreinfo.dll"))
+            {
+                oc_moreinfo.Visibility = Visibility.Hidden;
+            }
         }
 
         void create_shortcut(Environment.SpecialFolder specialFolder)
@@ -521,6 +525,18 @@ namespace OpenCyralive
         private void oc_config_file_Click(object sender, RoutedEventArgs e)
         {
             openThings(res_folder, "");
+        }
+
+        private void oc_moreinfo_Click(object sender, RoutedEventArgs e)
+        {
+            Assembly assembly = Assembly.LoadFile(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\plugins\\moreinfo\\moreinfo.dll");
+            foreach (Type type in assembly.GetExportedTypes())
+            {
+                if (type.Name == "more_info")
+                {
+                    type.InvokeMember("more_information", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
+                }
+            }
         }
     }
 }

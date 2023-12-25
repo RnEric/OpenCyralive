@@ -75,6 +75,7 @@
             <TextBlock Grid.Row="0" Grid.Column="5" Text="其他信息"/>
             <Button x:Name="about" Grid.Row="1" Grid.Column="5" Margin="5,5,5,0" Content="关于" Click="about_Click"/>
             <Button x:Name="os_license" Grid.Row="2" Grid.Column="5" Margin="5,5,5,0" Content="许可证/版权信息" Click="os_license_Click"/>
+            <Button x:Name="oc_moreinfo" Grid.Row="4" Grid.Column="5" Margin="5,5,5,0" Content="更多信息" Click="oc_moreinfo_Click"/>
         </Grid>
     </ScrollViewer>
 </Window>
