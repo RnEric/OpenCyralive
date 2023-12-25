@@ -72,6 +72,7 @@
             <CheckBox x:Name="oc_autostart" Grid.Row="14" Grid.Column="2" Content="开机启动" Click="oc_autostart_Click"/>
             <Button x:Name="oc_restart" Grid.Row="15" Grid.Column="0" Margin="5,5,5,0" Content="重启桌宠" Click="oc_restart_Click"/>
             <Button x:Name="oc_config_file" Grid.Row="15" Grid.Column="1" Margin="5,5,5,0" Content="打开所在目录" Click="oc_config_file_Click"/>
+            <Button x:Name="oc_reset_default" Grid.Row="15" Grid.Column="2" Margin="5,5,5,0" Content="恢复默认设置" Click="oc_reset_default_Click"/>
             <TextBlock Grid.Row="0" Grid.Column="5" Text="其他信息"/>
             <Button x:Name="about" Grid.Row="1" Grid.Column="5" Margin="5,5,5,0" Content="关于" Click="about_Click"/>
             <Button x:Name="os_license" Grid.Row="2" Grid.Column="5" Margin="5,5,5,0" Content="许可证/版权信息" Click="os_license_Click"/>

@@ -145,6 +145,10 @@ namespace OpenCyralive
             {
                 oc_moreinfo.Visibility = Visibility.Hidden;
             }
+            if (!File.Exists(res_folder + "\\plugins\\resetdefault\\resetdefault.dll"))
+            {
+                oc_reset_default.Visibility = Visibility.Hidden;
+            }
         }
 
         void create_shortcut(Environment.SpecialFolder specialFolder)
@@ -535,6 +539,23 @@ namespace OpenCyralive
                 if (type.Name == "more_info")
                 {
                     type.InvokeMember("more_information", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
+                }
+            }
+        }
+
+        private void oc_reset_default_Click(object sender, RoutedEventArgs e)
+        {
+            Assembly assembly = Assembly.LoadFile(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\plugins\\resetdefault\\resetdefault.dll");
+            foreach (Type type in assembly.GetExportedTypes())
+            {
+                if (type.Name == "oc_reset_default")
+                {
+                    if((bool)type.InvokeMember("oc_reset_default_conf", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
+                    {
+                        notifyIcon.Dispose();
+                        Application.Current.Shutdown();
+                        openThings(Assembly.GetExecutingAssembly().GetName().Name + ".exe", "");
+                    }
                 }
             }
         }
