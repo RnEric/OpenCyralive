@@ -542,6 +542,9 @@ namespace OpenCyralive
                     type.InvokeMember("more_information", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
                 }
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
         }
 
         private void oc_reset_default_Click(object sender, RoutedEventArgs e)
