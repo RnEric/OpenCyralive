@@ -25,6 +25,7 @@ using System.Reflection;
 using IWshRuntimeLibrary;
 using File = System.IO.File;
 using Microsoft.VisualBasic;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace OpenCyralive
 {
@@ -545,16 +546,20 @@ namespace OpenCyralive
 
         private void oc_reset_default_Click(object sender, RoutedEventArgs e)
         {
-            Assembly assembly = Assembly.LoadFile(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\plugins\\resetdefault\\resetdefault.dll");
-            foreach (Type type in assembly.GetExportedTypes())
+            var messageBox = MessageBox.Show("您确定要恢复默认设置吗?", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (messageBox == System.Windows.Forms.DialogResult.Yes)
             {
-                if (type.Name == "oc_reset_default")
+                Assembly assembly = Assembly.LoadFile(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\plugins\\resetdefault\\resetdefault.dll");
+                foreach (Type type in assembly.GetExportedTypes())
                 {
-                    if((bool)type.InvokeMember("oc_reset_default_conf", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
+                    if (type.Name == "oc_reset_default")
                     {
-                        notifyIcon.Dispose();
-                        Application.Current.Shutdown();
-                        openThings(Assembly.GetExecutingAssembly().GetName().Name + ".exe", "");
+                        if ((bool)type.InvokeMember("oc_reset_default_conf", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
+                        {
+                            notifyIcon.Dispose();
+                            Application.Current.Shutdown();
+                            openThings(Assembly.GetExecutingAssembly().GetName().Name + ".exe", "");
+                        }
                     }
                 }
             }
