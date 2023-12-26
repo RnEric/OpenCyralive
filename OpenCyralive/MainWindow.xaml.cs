@@ -20,7 +20,9 @@ using System.Windows.Media;
 using Brush = System.Windows.Media.Brush;
 using FontFamily = System.Windows.Media.FontFamily;
 using static OpenCyralive.CyraliveOperaScript;
-using static System.Net.Mime.MediaTypeNames;
+using System.Reflection;
+using System.Linq;
+using Application = System.Windows.Application;
 
 namespace OpenCyralive
 {
@@ -108,6 +110,78 @@ namespace OpenCyralive
                     };
                     mi_characters.Items.Add(menuItem);
                 }
+                if (Directory.GetDirectories(res_folder + "\\plugins").Length > 0)
+                {
+                    foreach (string folder_path in Directory.GetDirectories(res_folder + "\\plugins"))
+                    {
+                        if (Regex.Split(folder_path, @"\\").Last() != "resetdefault" && Regex.Split(folder_path, @"\\").Last() != "moreinfo")
+                        {
+                            Assembly assembly = Assembly.LoadFrom(folder_path + "\\" + Regex.Split(folder_path, @"\\").Last() + ".dll");
+                            MenuItem menuItem = new MenuItem();
+                            foreach (Type type in assembly.GetExportedTypes())
+                            {
+                                if (type.Name == "plugin_base")
+                                {
+                                    menuItem.Header = type.InvokeMember("pluginName", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) as string;
+                                }
+                            }
+                            menuItem.Click += (s, e) =>
+                            {
+                                foreach (Type type in assembly.GetExportedTypes())
+                                {
+                                    if (type.Name == "plugin_base")
+                                    {
+                                        if (type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) != null && (bool)type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
+                                        {
+                                            object obj = Activator.CreateInstance(assembly.GetType(assembly.GetName().Name + ".WidgetWindow"));
+                                            Window window = (Window)obj;
+                                            window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
+                                            window.Top = Top + 3 * Cierra_hover_text_border.ActualHeight;
+                                            window.Loaded += (s, e) =>
+                                            {
+                                                Background = Brushes.Transparent;
+                                            };
+                                            window.Closed += (s, e) =>
+                                            {
+                                                if (read_config_file(res_folder + "\\config\\config.json", "TransparentWindow") != "Yes")
+                                                {
+                                                    Background = (Brush)new BrushConverter().ConvertFromString("#01FFFFFF");
+                                                }
+                                            };
+                                            if (Topmost)
+                                            {
+                                                window.Topmost = true;
+                                            }
+                                            window.Show();
+                                        }
+                                        else
+                                        {
+                                            type.InvokeMember("pluginStart", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
+                                        }
+                                    }
+                                }
+                            };
+                            Cyralive_plugins.Items.Add(menuItem);
+                        }
+                        else
+                        {
+                            if (Cyralive_plugins.Items.Count == 0)
+                            {
+                                MenuItem menuItem = new MenuItem();
+                                menuItem.Header = "没有插件";
+                                menuItem.IsEnabled = false;
+                                Cyralive_plugins.Items.Add(menuItem);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MenuItem menuItem = new MenuItem();
+                    menuItem.Header = "没有插件";
+                    menuItem.IsEnabled = false;
+                    Cyralive_plugins.Items.Add(menuItem);
+                }
                 ocConfig = JsonNode.Parse(File.ReadAllText(res_folder + "\\config\\config.json"));
                 if (ocConfig["Character"].ToString() == null || ocConfig["Character"].ToString() == "")
                 {
@@ -131,7 +205,7 @@ namespace OpenCyralive
                 }
                 if (ocConfig["Character"].ToString() != "" && File.Exists(res_folder + "\\images\\appicon\\" + ocConfig["Character"].ToString() + "\\appicon.ico"))
                 {
-                    Icon = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\"+ ocConfig["Character"].ToString() + "\\appicon.ico", UriKind.RelativeOrAbsolute));
+                    Icon = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + ocConfig["Character"].ToString() + "\\appicon.ico", UriKind.RelativeOrAbsolute));
                 }
                 else if (File.Exists(res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico"))
                 {
@@ -282,6 +356,14 @@ namespace OpenCyralive
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.Name.StartsWith("CyraliveWidget"))
+                {
+                    window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
+                    window.Top = Top + 3 * Cierra_hover_text_border.ActualHeight;
+                }
+            }
             Timer timer = new Timer(1000);
             timer.Elapsed += (s, e2) =>
             {

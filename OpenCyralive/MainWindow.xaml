@@ -10,6 +10,8 @@
     </WindowChrome.WindowChrome>
     <Window.ContextMenu>
         <ContextMenu x:Name="oc_cm">
+            <MenuItem x:Name="Cyralive_plugins" Header="插件"/>
+            <Separator/>
             <MenuItem Header="设置" x:Name="mi_settings" Click="mi_settings_Click"/>
             <MenuItem Header="切换角色" x:Name="mi_characters"/>
             <Separator/>
