@@ -131,30 +131,33 @@ namespace OpenCyralive
                                 {
                                     if (type.Name == "plugin_base")
                                     {
-                                        if (type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) != null && (bool)type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
+                                        try
                                         {
-                                            object obj = Activator.CreateInstance(assembly.GetType(assembly.GetName().Name + ".WidgetWindow"));
-                                            Window window = (Window)obj;
-                                            window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
-                                            window.Top = Top + 3 * Cierra_hover_text_border.ActualHeight;
-                                            window.Loaded += (s, e) =>
+                                            if (type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) != null && (bool)type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
                                             {
-                                                Background = Brushes.Transparent;
-                                            };
-                                            window.Closed += (s, e) =>
-                                            {
-                                                if (read_config_file(res_folder + "\\config\\config.json", "TransparentWindow") != "Yes")
+                                                object obj = Activator.CreateInstance(assembly.GetType(assembly.GetName().Name + ".WidgetWindow"));
+                                                Window window = (Window)obj;
+                                                window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
+                                                window.Top = Top + 3 * Cierra_hover_text_border.ActualHeight;
+                                                window.Loaded += (s, e) =>
                                                 {
-                                                    Background = (Brush)new BrushConverter().ConvertFromString("#01FFFFFF");
+                                                    Background = Brushes.Transparent;
+                                                };
+                                                window.Closed += (s, e) =>
+                                                {
+                                                    if (read_config_file(res_folder + "\\config\\config.json", "TransparentWindow") != "Yes")
+                                                    {
+                                                        Background = (Brush)new BrushConverter().ConvertFromString("#01FFFFFF");
+                                                    }
+                                                };
+                                                if (Topmost)
+                                                {
+                                                    window.Topmost = true;
                                                 }
-                                            };
-                                            if (Topmost)
-                                            {
-                                                window.Topmost = true;
+                                                window.Show();
                                             }
-                                            window.Show();
                                         }
-                                        else
+                                        catch
                                         {
                                             type.InvokeMember("pluginStart", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
                                         }
