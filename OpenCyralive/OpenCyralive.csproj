@@ -131,6 +131,8 @@
     </None>
 	-->
   
+    <Folder Include="resources\lines\艾米利亚 希耶拉 诺娃 %28航空航天%29\" />
+  
     <Folder Include="resources\plugins\" />
   </ItemGroup>
   <ItemGroup>
@@ -138,10 +140,16 @@
     <PackageReference Include="System.Text.Json" Version="8.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="resources\characters\艾米利亚 希耶拉 诺娃 %28航空航天%29\normal.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\license\System.DirectoryServices.AccountManagement.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\license\System.Text.Json.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\lines\艾米利亚 希耶拉 诺娃 %28航空航天%29\normal.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
