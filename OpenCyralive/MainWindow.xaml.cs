@@ -65,7 +65,10 @@ namespace OpenCyralive
                 }
                 else
                 {
-                    Visibility = Visibility.Visible;
+                    foreach (Window window in Application.Current.Windows)
+                    {
+                        window.Visibility = Visibility.Visible;
+                    }
                     if (File.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json"))
                     {
                         Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json");
@@ -451,9 +454,15 @@ namespace OpenCyralive
             }
             else
             {
-                Visibility = Visibility.Visible;
-                ShowInTaskbar = true;
-                WindowState = WindowState.Minimized;
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() == typeof(MainWindow) || window.Name.StartsWith("CyraliveWidget"))
+                    {
+                        window.ShowInTaskbar = true;
+                        window.Visibility = Visibility.Visible;
+                        window.WindowState = WindowState.Minimized;
+                    }
+                }
             }
         }
 
@@ -461,7 +470,20 @@ namespace OpenCyralive
         {
             if (read_config_file(res_folder + "\\config\\config.json", "Taskbar") != "Yes")
             {
-                ShowInTaskbar = false;
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() == typeof(MainWindow) || window.Name.StartsWith("CyraliveWidget"))
+                    {
+                        window.ShowInTaskbar = false;
+                    }
+                }
+            }
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.Name.StartsWith("CyraliveWidget"))
+                {
+                    window.WindowState = WindowState.Normal;
+                }
             }
         }
 
@@ -477,7 +499,10 @@ namespace OpenCyralive
                 {
                     ShowInTaskbar = true;
                 }
-                Visibility = Visibility.Hidden;
+                foreach (Window window in Application.Current.Windows)
+                {
+                    window.Visibility = Visibility.Hidden;
+                }
             }
         }
 
