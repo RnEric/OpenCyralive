@@ -25,10 +25,16 @@
     <Viewbox Stretch="UniformToFill">
         <Grid Width="340" Height="330">
             <Grid x:Name="oc_Stage">
+                <Grid.Effect>
+                    <DropShadowEffect ShadowDepth="0.7" Color="Black" Direction="330" Opacity="0.5" BlurRadius="2"/>
+                </Grid.Effect>
                 <Image x:Name="oc_Show" HorizontalAlignment="Center" Height="300" Margin="-160,10,0,0" VerticalAlignment="Top" Width="180" MouseLeftButtonDown="oc_Show_MouseLeftButtonDown" MouseLeave="oc_Show_MouseLeave" MouseEnter="oc_Show_MouseEnter" AllowDrop="True" Drop="oc_Show_Drop"/>
             </Grid>
             <Grid x:Name="Cierra_hover_text_grid"  Margin="142.5,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Border x:Name="Cierra_hover_text_border" BorderThickness="1" BorderBrush="Black" Width="170" CornerRadius="5" Background="#FFEED6">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="1" Direction="330" Color="Black" Opacity="0.5" BlurRadius="2"/>
+                    </Border.Effect>
                     <TextBlock x:Name="Cierra_hover_text" Margin="2,2,2,2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="165"/>
                 </Border>
             </Grid>
