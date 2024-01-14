@@ -146,6 +146,18 @@
     <None Update="resources\characters\艾米利亚 希耶拉 诺娃 %28航空航天%29\normal.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="resources\config\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\config\time.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\images\appicon\appicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\images\trayicon\trayicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\license\System.DirectoryServices.AccountManagement.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
