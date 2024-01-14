@@ -141,7 +141,7 @@ namespace OpenCyralive
                                                 object obj = Activator.CreateInstance(assembly.GetType(assembly.GetName().Name + ".WidgetWindow"));
                                                 Window window = (Window)obj;
                                                 window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
-                                                window.Top = Top + 3 * Cierra_hover_text_border.ActualHeight;
+                                                window.Top = Top + Height / 2;
                                                 window.Loaded += (s, e) =>
                                                 {
                                                     Background = Brushes.Transparent;
@@ -375,7 +375,7 @@ namespace OpenCyralive
                 if (window.Name.StartsWith("CyraliveWidget"))
                 {
                     window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
-                    window.Top = Top + 3 * Cierra_hover_text_border.ActualHeight;
+                    window.Top = Top + Height / 2;
                 }
             }
             Timer timer = new Timer(1000);
