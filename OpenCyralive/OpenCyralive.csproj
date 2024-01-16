@@ -146,6 +146,9 @@
     <None Update="resources\characters\艾米利亚 希耶拉 诺娃 %28航空航天%29\normal.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="resources\characters\诺亚 弗洛姆 史密斯 %28自动化%29\normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\config\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -168,6 +171,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\lines\艾米利亚 希耶拉 诺娃 %28航空航天%29\normal.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\lines\诺亚 弗洛姆 史密斯 %28自动化%29\normal.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
