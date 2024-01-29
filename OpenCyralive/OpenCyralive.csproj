@@ -7,7 +7,7 @@
     <UseWindowsForms>True</UseWindowsForms>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <Authors>Eric Ren</Authors>
-    <Version>2.3</Version>
+    <Version>2.4</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>none</DebugType>
@@ -137,6 +137,8 @@
     <Folder Include="resources\lines\艾米利亚 希耶拉 诺娃 %28航空航天%29\" />
   
     <Folder Include="resources\plugins\" />
+  
+    <Folder Include="resources\specialplugins\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />

@@ -143,11 +143,11 @@ namespace OpenCyralive
             {
                 oc_autostart.IsChecked = true;
             }
-            if (!File.Exists(res_folder + "\\plugins\\moreinfo\\moreinfo.dll"))
+            if (!File.Exists(res_folder + "\\specialplugins\\moreinfo\\moreinfo.dll"))
             {
                 oc_moreinfo.Visibility = Visibility.Hidden;
             }
-            if (!File.Exists(res_folder + "\\plugins\\resetdefault\\resetdefault.dll"))
+            if (!File.Exists(res_folder + "\\specialplugins\\resetdefault\\resetdefault.dll"))
             {
                 oc_reset_default.Visibility = Visibility.Hidden;
             }
@@ -535,7 +535,7 @@ namespace OpenCyralive
 
         private void oc_moreinfo_Click(object sender, RoutedEventArgs e)
         {
-            Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\plugins\\moreinfo\\moreinfo.dll");
+            Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\specialplugins\\moreinfo\\moreinfo.dll");
             foreach (Type type in assembly.GetExportedTypes())
             {
                 if (type.Name == "more_info")
@@ -550,7 +550,7 @@ namespace OpenCyralive
             var messageBox = MessageBox.Show("您确定要恢复默认设置吗?", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (messageBox == System.Windows.Forms.DialogResult.Yes)
             {
-                Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\plugins\\resetdefault\\resetdefault.dll");
+                Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\specialplugins\\resetdefault\\resetdefault.dll");
                 foreach (Type type in assembly.GetExportedTypes())
                 {
                     if (type.Name == "oc_reset_default")

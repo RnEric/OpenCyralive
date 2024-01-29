@@ -117,76 +117,63 @@ namespace OpenCyralive
                 {
                     foreach (string folder_path in Directory.GetDirectories(res_folder + "\\plugins"))
                     {
-                        if (Regex.Split(folder_path, @"\\").Last() != "resetdefault" && Regex.Split(folder_path, @"\\").Last() != "moreinfo")
+                        Assembly assembly = Assembly.LoadFrom(folder_path + "\\" + Regex.Split(folder_path, @"\\").Last() + ".dll");
+                        MenuItem menuItem = new MenuItem();
+                        foreach (Type type in assembly.GetExportedTypes())
                         {
-                            Assembly assembly = Assembly.LoadFrom(folder_path + "\\" + Regex.Split(folder_path, @"\\").Last() + ".dll");
-                            MenuItem menuItem = new MenuItem();
+                            if (type.Name == "plugin_base")
+                            {
+                                menuItem.Header = type.InvokeMember("pluginName", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) as string;
+                            }
+                        }
+                        menuItem.Click += (s, e) =>
+                        {
                             foreach (Type type in assembly.GetExportedTypes())
                             {
                                 if (type.Name == "plugin_base")
                                 {
-                                    menuItem.Header = type.InvokeMember("pluginName", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) as string;
-                                }
-                            }
-                            menuItem.Click += (s, e) =>
-                            {
-                                foreach (Type type in assembly.GetExportedTypes())
-                                {
-                                    if (type.Name == "plugin_base")
+                                    try
                                     {
-                                        try
+                                        if (type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) != null && (bool)type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
                                         {
-                                            if (type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null) != null && (bool)type.InvokeMember("IsWidget", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
+                                            object obj = Activator.CreateInstance(assembly.GetType(assembly.GetName().Name + ".WidgetWindow"));
+                                            Window window = (Window)obj;
+                                            window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
+                                            window.Top = Top + Height / 2;
+                                            window.Loaded += (s, e) =>
                                             {
-                                                object obj = Activator.CreateInstance(assembly.GetType(assembly.GetName().Name + ".WidgetWindow"));
-                                                Window window = (Window)obj;
-                                                window.Left = Left + oc_Stage.ActualWidth - Cierra_hover_text_border.Width;
-                                                window.Top = Top + Height / 2;
-                                                window.Loaded += (s, e) =>
+                                                Background = Brushes.Transparent;
+                                            };
+                                            window.Closed += (s, e) =>
+                                            {
+                                                if (read_config_file(res_folder + "\\config\\config.json", "TransparentWindow") != "Yes")
                                                 {
-                                                    Background = Brushes.Transparent;
-                                                };
-                                                window.Closed += (s, e) =>
-                                                {
-                                                    if (read_config_file(res_folder + "\\config\\config.json", "TransparentWindow") != "Yes")
-                                                    {
-                                                        Background = (Brush)new BrushConverter().ConvertFromString("#01FFFFFF");
-                                                    }
-                                                };
-                                                if (Topmost)
-                                                {
-                                                    window.Topmost = true;
+                                                    Background = (Brush)new BrushConverter().ConvertFromString("#01FFFFFF");
                                                 }
-                                                window.Show();
-                                                foreach (Window window1 in Application.Current.Windows)
+                                            };
+                                            if (Topmost)
+                                            {
+                                                window.Topmost = true;
+                                            }
+                                            window.Show();
+                                            foreach (Window window1 in Application.Current.Windows)
+                                            {
+                                                if (window.Name.StartsWith("CyraliveWidget"))
                                                 {
-                                                    if (window.Name.StartsWith("CyraliveWidget"))
-                                                    {
-                                                        window.Height = window.Height * (Height / 315);
-                                                        window.Width = window.Width * (Width / 340);
-                                                    }
+                                                    window.Height = window.Height * (Height / 315);
+                                                    window.Width = window.Width * (Width / 340);
                                                 }
                                             }
                                         }
-                                        catch
-                                        {
-                                            type.InvokeMember("pluginStart", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
-                                        }
+                                    }
+                                    catch
+                                    {
+                                        type.InvokeMember("pluginStart", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
                                     }
                                 }
-                            };
-                            Cyralive_plugins.Items.Add(menuItem);
-                        }
-                        else
-                        {
-                            if (Cyralive_plugins.Items.Count == 0)
-                            {
-                                MenuItem menuItem = new MenuItem();
-                                menuItem.Header = "没有插件";
-                                menuItem.IsEnabled = false;
-                                Cyralive_plugins.Items.Add(menuItem);
                             }
-                        }
+                        };
+                        Cyralive_plugins.Items.Add(menuItem);
                     }
                 }
                 else
