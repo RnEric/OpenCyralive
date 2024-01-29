@@ -25,7 +25,7 @@ namespace OpenCyralive
         {
             InitializeComponent();
             object[] all_author = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-            oc_info.Text = "OpenCyralive - 开源桌宠框架\n\n作者: " + ((AssemblyCompanyAttribute)all_author[0]).Company + "\n版本: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            oc_info.Text = "\n\n作者: " + ((AssemblyCompanyAttribute)all_author[0]).Company + "\n版本: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void aboutOC_close_Click(object sender, RoutedEventArgs e)
