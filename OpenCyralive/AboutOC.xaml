@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:OpenCyralive"
         mc:Ignorable="d"
         Title="关于OpenCyralive" Height="190" Width="400" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
-    <Window.Background>
-        <ImageBrush ImageSource="/res/Bluelines.jpg" Stretch="UniformToFill"/>
-    </Window.Background>
     <Grid>
         <TextBlock x:Name="oc_logo" HorizontalAlignment="Center" TextWrapping="Wrap" Text="OpenCyralive" TextAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic" Foreground="Yellow" FontSize="22" Margin="0,10,0,0" Cursor="Hand" MouseUp="oc_logo_MouseUp"/>
         <TextBlock HorizontalAlignment="Center" x:Name="oc_info" TextWrapping="Wrap" Text="" TextAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" />
