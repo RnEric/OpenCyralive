@@ -35,7 +35,7 @@ namespace OpenCyralive
     public partial class ocSettings : Window
     {
         List<string> fonts = new List<string>();
-        string[] fontsizes = { "12（默认）", "14", "16", "18" };
+        string[] fontsizes = { "13（默认）", "14", "16", "18" };
         public ocSettings()
         {
             InitializeComponent();
@@ -302,6 +302,7 @@ namespace OpenCyralive
                     if (window.GetType() == typeof(MainWindow))
                     {
                         (window as MainWindow).Cierra_hover_text_border.Background = (Brush)new BrushConverter().ConvertFromString(hexColor);
+                        (window as MainWindow).Cierra_hover_text.Background = (Brush)new BrushConverter().ConvertFromString(hexColor);
                         (window as MainWindow).Cierra_hover_text_grid.Visibility = Visibility.Visible;
                     }
                 }
@@ -372,7 +373,8 @@ namespace OpenCyralive
                     if (oc_msg_font.SelectedIndex != fonts.IndexOf((window as MainWindow).Cierra_hover_text.FontFamily.ToString()))
                     {
                         write_config_file(res_folder + "\\config\\config.json", "Bubble_font", ((ComboBox)sender).Text);
-                        (window as MainWindow).Cierra_hover_text.FontFamily = new System.Windows.Media.FontFamily(((ComboBox)sender).Text);
+                        (window as MainWindow).Cierra_hover_text.Document.FontFamily = new FontFamily(((ComboBox)sender).Text);
+                        fontFamily = (window as MainWindow).Cierra_hover_text.Document.FontFamily;
                         oc_msg_font.ToolTip = ((ComboBox)sender).Text;
                         (window as MainWindow).Cierra_hover_text_grid.Visibility = Visibility.Visible;
                     }
@@ -442,21 +444,23 @@ namespace OpenCyralive
             {
                 if (window.GetType() == typeof(MainWindow))
                 {
-                    if (((ComboBox)sender).Text.Contains("12"))
+                    if (((ComboBox)sender).Text.Contains("默认"))
                     {
                         if (read_config_file(res_folder + "\\config\\config.json", "Bubble_font_size") != "")
                         {
                             write_config_file(res_folder + "\\config\\config.json", "Bubble_font_size", "");
                         }
-                        (window as MainWindow).Cierra_hover_text.FontSize = 12;
+                        (window as MainWindow).Cierra_hover_text.Document.FontSize = 13;
+                        fontSize = 0;
                         (window as MainWindow).Cierra_hover_text_grid.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        if (oc_msg_font_size.SelectedIndex != Array.IndexOf(fontsizes, (window as MainWindow).Cierra_hover_text.FontSize.ToString()))
+                        if (oc_msg_font_size.SelectedIndex != Array.IndexOf(fontsizes, (window as MainWindow).Cierra_hover_text.Document.FontSize.ToString()))
                         {
                             write_config_file(res_folder + "\\config\\config.json", "Bubble_font_size", ((ComboBox)sender).Text);
-                            (window as MainWindow).Cierra_hover_text.FontSize = Convert.ToDouble(((ComboBox)sender).Text);
+                            (window as MainWindow).Cierra_hover_text.Document.FontSize = Convert.ToDouble(((ComboBox)sender).Text);
+                            fontSize = Convert.ToDouble(((ComboBox)sender).Text);
                             (window as MainWindow).Cierra_hover_text_grid.Visibility = Visibility.Visible;
                         }
                     }

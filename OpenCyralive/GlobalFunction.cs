@@ -10,6 +10,12 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Diagnostics;
 using static OpenCyralive.CyraliveOperaScript;
+using MdXaml;
+using System.Windows.Documents;
+using System.Windows;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.Forms.MessageBox;
+using System.Windows.Media;
 
 namespace OpenCyralive
 {
@@ -24,6 +30,9 @@ namespace OpenCyralive
         public static string[] get_size;
         public static int month;
         public static string[] strings = Regex.Split(Directory.GetDirectories(res_folder + "\\characters")[0], @"\\");
+        public static Markdown markdown = new Markdown();
+        public static FontFamily fontFamily;
+        public static double fontSize = 0;
         public static void write_config_file(string file_path, string item, string value)
         {
             JsonNode modify_current_json = JsonNode.Parse(File.ReadAllText(file_path));
@@ -31,7 +40,7 @@ namespace OpenCyralive
             File.WriteAllText(file_path, modify_current_json.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
         }
 
-        public static string get_message(string file_path)
+        public static FlowDocument get_message(string file_path)
         {
             try
             {
@@ -60,11 +69,11 @@ namespace OpenCyralive
                             final_text = message_text.Replace(str, CyraliveOperaScriptVarVal[CyraliveOperaScriptVar.IndexOf(str)]);
                         }
                     }
-                    return final_text;
+                    return markdown.Transform(final_text);
                 }
                 else
                 {
-                    return message_text;
+                    return markdown.Transform(message_text);
                 }
             }
             catch (Exception ex)

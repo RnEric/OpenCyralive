@@ -23,6 +23,7 @@ using static OpenCyralive.CyraliveOperaScript;
 using System.Reflection;
 using System.Linq;
 using Application = System.Windows.Application;
+using System.Windows.Documents;
 
 namespace OpenCyralive
 {
@@ -71,7 +72,8 @@ namespace OpenCyralive
                     }
                     if (File.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json"))
                     {
-                        Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json");
+                        Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json");
+                        get_msg_trigger();
                     }
                     Cierra_hover_text_grid.Visibility = Visibility.Visible;
                 }
@@ -233,7 +235,8 @@ namespace OpenCyralive
                 }
                 if (Directory.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\startup"))
                 {
-                    Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\startup\\" + month + ".json");
+                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\startup\\" + month + ".json");
+                    get_msg_trigger();
                 }
                 else
                 {
@@ -276,6 +279,7 @@ namespace OpenCyralive
                 if (ocConfig["Bubble_bg"].ToString() != "")
                 {
                     Cierra_hover_text_border.Background = (Brush)new BrushConverter().ConvertFromString(ocConfig["Bubble_bg"].ToString());
+                    Cierra_hover_text.Background = (Brush)new BrushConverter().ConvertFromString(ocConfig["Bubble_bg"].ToString());
                 }
                 if (ocConfig["Bubble_fg"].ToString() != "")
                 {
@@ -285,10 +289,6 @@ namespace OpenCyralive
                 {
                     Cierra_hover_text_border.BorderBrush = (Brush)new BrushConverter().ConvertFromString(ocConfig["Bubble_brd"].ToString());
                 }
-                if (ocConfig["Bubble_font"].ToString() != "")
-                {
-                    Cierra_hover_text.FontFamily = new FontFamily(ocConfig["Bubble_font"].ToString());
-                }
                 if (ocConfig["Bubble_font_Bold"].ToString() != "")
                 {
                     Cierra_hover_text.FontWeight = FontWeights.Bold;
@@ -296,10 +296,6 @@ namespace OpenCyralive
                 if (ocConfig["Bubble_font_Italic"].ToString() != "")
                 {
                     Cierra_hover_text.FontStyle = FontStyles.Italic;
-                }
-                if (ocConfig["Bubble_font_size"].ToString() != "")
-                {
-                    Cierra_hover_text.FontSize = Convert.ToDouble(ocConfig["Bubble_font_size"].ToString());
                 }
             }
             catch (Exception ex)
@@ -309,10 +305,44 @@ namespace OpenCyralive
             }
         }
 
+        void get_msg_trigger()
+        {
+            if (fontSize != 0)
+            {
+                Cierra_hover_text.Document.FontSize = fontSize;
+            }
+            else
+            {
+                if (ocConfig["Bubble_font_size"].ToString() != "")
+                {
+                    Cierra_hover_text.Document.FontSize = Convert.ToDouble(ocConfig["Bubble_font_size"].ToString());
+                }
+                else
+                {
+                    Cierra_hover_text.Document.FontSize = 13;
+                }
+            }
+            if (fontFamily != null)
+            {
+                Cierra_hover_text.Document.FontFamily = fontFamily;
+            }
+            else
+            {
+                if (ocConfig["Bubble_font"].ToString() != "")
+                {
+                    Cierra_hover_text.Document.FontFamily = new FontFamily(ocConfig["Bubble_font"].ToString());
+                }
+                else
+                {
+                    Cierra_hover_text.Document.FontFamily = new FontFamily("Microsoft Yahei");
+                }
+            }
+        }
+
         private void mi_exit_Click(object sender, RoutedEventArgs e)
         {
             notifyIcon.Dispose();
-            foreach (Window window in System.Windows.Application.Current.Windows)
+            foreach (Window window in Application.Current.Windows)
             {
                 window.Close();
             }
@@ -333,7 +363,8 @@ namespace OpenCyralive
                         character_change(character_images[new Random().Next(0, character_images.Count)]);
                     }
                     Cierra_hover_text_grid.Visibility = Visibility.Visible;
-                    Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
+                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
+                    get_msg_trigger();
                 }
                 catch (Exception ex)
                 {
@@ -415,12 +446,13 @@ namespace OpenCyralive
                 {
                     if (Directory.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\hover"))
                     {
-                        Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\hover\\" + schedule_reader() + ".json");
+                        Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\hover\\" + schedule_reader() + ".json");
                     }
                     else
                     {
-                        Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
+                        Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
                     }
+                    get_msg_trigger();
                     if (read_config_file(res_folder + "\\config\\config.json", "Translucent") == "Yes")
                     {
                         oc_Show.Opacity = 1;
@@ -508,12 +540,13 @@ namespace OpenCyralive
                 {
                     string[] first_split = Regex.Split(fileDrops[0], @"\\");
                     string[] second_split = Regex.Split(first_split[first_split.Length - 1], "\\.");
-                    Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\" + second_split[second_split.Length - 1] + ".json");
+                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\" + second_split[second_split.Length - 1] + ".json");
                 }
                 catch
                 {
-                    Cierra_hover_text.Text = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\dragdrop.json");
+                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\dragdrop.json");
                 }
+                get_msg_trigger();
                 Cierra_hover_text_grid.Visibility = Visibility.Visible;
             }
         }
