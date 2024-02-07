@@ -36,7 +36,7 @@
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="1" Direction="330" Color="Black" Opacity="0.5" BlurRadius="2"/>
                     </Border.Effect>
-                    <mdxam:MarkdownScrollViewer x:Name="Cierra_hover_text" Margin="2,2,2,2" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" ClickAction="OpenBrowser"/>
+                    <mdxam:MarkdownScrollViewer x:Name="Cierra_hover_text" Margin="2,2,2,12" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" ClickAction="OpenBrowser"/>
                 </Border>
             </Grid>
         </Grid>
