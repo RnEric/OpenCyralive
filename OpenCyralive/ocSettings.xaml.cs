@@ -568,5 +568,19 @@ namespace OpenCyralive
                 }
             }
         }
+
+        private void oc_plugin_mgmt_Click(object sender, RoutedEventArgs e)
+        {
+            var dialogResult = MessageBox.Show("为避免安装与卸载插件时可能出现的问题，桌宠将关闭，操作完毕后如需继续使用桌宠请再次打开。\n\n如需安装插件，请将插件文件夹复制或移动到此目录下。\n\n注意：插件文件夹名必须和插件主文件名称一致\n\n如需卸载插件，删除此目录下对应文件夹即可。", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                openThings(res_folder + "\\plugins", "");
+                notifyIcon.Dispose();
+                foreach (Window window in Application.Current.Windows)
+                {
+                    window.Close();
+                }
+            }
+        }
     }
 }

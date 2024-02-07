@@ -66,6 +66,7 @@
                 <ComboBoxItem x:Name="oc_hemi_south" Content="南半球" PreviewMouseUp="oc_hemi_south_PreviewMouseUp"/>
             </ComboBox>
             <Button x:Name="oc_schedule" Grid.Row="12" Grid.Column="0"  Margin="5,5,5,0" Content="作息时间" Click="oc_schedule_Click"/>
+            <Button x:Name="oc_plugin_mgmt" Grid.Row="12" Grid.Column="1" Margin="5,5,5,0" Content="插件管理" Click="oc_plugin_mgmt_Click"/>
             <TextBlock Grid.Row="13" Grid.Column="1" Text="高级设置" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <CheckBox x:Name="oc_desktop_shortcut" Grid.Row="14" Grid.Column="0" Content="桌面快捷方式" Click="oc_desktop_shortcut_Click"/>
             <CheckBox Margin="0,0,5,0" Grid.Row="14" Grid.Column="1" x:Name="oc_startmenu_shortcut" Content="开始菜单快捷方式" Click="oc_startmenu_shortcut_Click"/>
