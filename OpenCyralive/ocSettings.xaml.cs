@@ -302,7 +302,6 @@ namespace OpenCyralive
                     if (window.GetType() == typeof(MainWindow))
                     {
                         (window as MainWindow).Cierra_hover_text_border.Background = (Brush)new BrushConverter().ConvertFromString(hexColor);
-                        (window as MainWindow).Cierra_hover_text.Background = (Brush)new BrushConverter().ConvertFromString(hexColor);
                         (window as MainWindow).Cierra_hover_text_grid.Visibility = Visibility.Visible;
                     }
                 }

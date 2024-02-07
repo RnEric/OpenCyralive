@@ -40,7 +40,7 @@ namespace OpenCyralive
             File.WriteAllText(file_path, modify_current_json.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
         }
 
-        public static FlowDocument get_message(string file_path)
+        public static string get_message(string file_path)
         {
             try
             {
@@ -69,11 +69,11 @@ namespace OpenCyralive
                             final_text = message_text.Replace(str, CyraliveOperaScriptVarVal[CyraliveOperaScriptVar.IndexOf(str)]);
                         }
                     }
-                    return markdown.Transform(final_text);
+                    return final_text;
                 }
                 else
                 {
-                    return markdown.Transform(message_text);
+                    return message_text;
                 }
             }
             catch (Exception ex)

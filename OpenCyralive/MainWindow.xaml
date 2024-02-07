@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mdxam="clr-namespace:MdXaml;assembly=MdXaml"
         mc:Ignorable="d"
         Title="OpenCyralive" Height="315" Width="340" MouseUp="Window_MouseUp" LocationChanged="Window_LocationChanged" WindowStyle="None" AllowsTransparency="True" Background="#01FFFFFF" ShowInTaskbar="False" Topmost="True" Activated="Window_Activated" SizeChanged="Window_SizeChanged">
     <WindowChrome.WindowChrome>
@@ -35,13 +36,7 @@
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="1" Direction="330" Color="Black" Opacity="0.5" BlurRadius="2"/>
                     </Border.Effect>
-                    <RichTextBox x:Name="Cierra_hover_text" Margin="2,2,2,2" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFEED6" BorderBrush="Transparent" IsReadOnly="True" IsDocumentEnabled="True">
-                        <FlowDocument>
-                            <Paragraph>
-                                Text
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <mdxam:MarkdownScrollViewer x:Name="Cierra_hover_text" Margin="2,2,2,2" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" ClickAction="OpenBrowser"/>
                 </Border>
             </Grid>
         </Grid>

@@ -72,7 +72,7 @@ namespace OpenCyralive
                     }
                     if (File.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json"))
                     {
-                        Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json");
+                        Cierra_hover_text.Markdown = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\activate.json");
                         get_msg_trigger();
                     }
                     Cierra_hover_text_grid.Visibility = Visibility.Visible;
@@ -235,7 +235,7 @@ namespace OpenCyralive
                 }
                 if (Directory.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\startup"))
                 {
-                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\startup\\" + month + ".json");
+                    Cierra_hover_text.Markdown = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\startup\\" + month + ".json");
                     get_msg_trigger();
                 }
                 else
@@ -363,7 +363,7 @@ namespace OpenCyralive
                         character_change(character_images[new Random().Next(0, character_images.Count)]);
                     }
                     Cierra_hover_text_grid.Visibility = Visibility.Visible;
-                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
+                    Cierra_hover_text.Markdown = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
                     get_msg_trigger();
                 }
                 catch (Exception ex)
@@ -420,7 +420,6 @@ namespace OpenCyralive
 
         private void oc_Show_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            Cierra_hover_text_grid.Visibility = Visibility.Hidden;
             if (read_config_file(res_folder + "\\config\\config.json", "Translucent") == "Yes")
             {
                 oc_Show.Opacity = 0.5;
@@ -446,11 +445,11 @@ namespace OpenCyralive
                 {
                     if (Directory.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\hover"))
                     {
-                        Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\hover\\" + schedule_reader() + ".json");
+                        Cierra_hover_text.Markdown = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\hover\\" + schedule_reader() + ".json");
                     }
                     else
                     {
-                        Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
+                        Cierra_hover_text.Markdown = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\" + character_status() + ".json");
                     }
                     get_msg_trigger();
                     if (read_config_file(res_folder + "\\config\\config.json", "Translucent") == "Yes")
@@ -540,11 +539,11 @@ namespace OpenCyralive
                 {
                     string[] first_split = Regex.Split(fileDrops[0], @"\\");
                     string[] second_split = Regex.Split(first_split[first_split.Length - 1], "\\.");
-                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\" + second_split[second_split.Length - 1] + ".json");
+                    Cierra_hover_text.Markdown = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\" + second_split[second_split.Length - 1] + ".json");
                 }
                 catch
                 {
-                    Cierra_hover_text.Document = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\dragdrop.json");
+                    Cierra_hover_text.Markdown = get_message(res_folder + "\\lines\\" + oc_Show_character_name() + "\\dragdrop\\dragdrop.json");
                 }
                 get_msg_trigger();
                 Cierra_hover_text_grid.Visibility = Visibility.Visible;
