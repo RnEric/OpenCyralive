@@ -131,17 +131,35 @@ namespace OpenCyralive
             {
                 oc_hemi.SelectedIndex = 1;
             }
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            if (File.Exists(res_folder + "\\config\\brand.txt"))
             {
-                oc_desktop_shortcut.IsChecked = true;
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk"))
+                {
+                    oc_desktop_shortcut.IsChecked = true;
+                }
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk"))
+                {
+                    oc_startmenu_shortcut.IsChecked = true;
+                }
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk"))
+                {
+                    oc_autostart.IsChecked = true;
+                }
             }
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            else
             {
-                oc_startmenu_shortcut.IsChecked = true;
-            }
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
-            {
-                oc_autostart.IsChecked = true;
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+                {
+                    oc_desktop_shortcut.IsChecked = true;
+                }
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+                {
+                    oc_startmenu_shortcut.IsChecked = true;
+                }
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+                {
+                    oc_autostart.IsChecked = true;
+                }
             }
             if (!File.Exists(res_folder + "\\specialplugins\\moreinfo\\moreinfo.dll"))
             {
@@ -156,7 +174,15 @@ namespace OpenCyralive
         void create_shortcut(Environment.SpecialFolder specialFolder)
         {
             WshShell shell = new WshShell();
-            IWshShortcut Cierra_shortcut = (IWshShortcut)shell.CreateShortcut(Environment.GetFolderPath(specialFolder) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+            IWshShortcut Cierra_shortcut;
+            if (File.Exists(res_folder + "\\config\\brand.txt"))
+            {
+                Cierra_shortcut = (IWshShortcut)shell.CreateShortcut(Environment.GetFolderPath(specialFolder) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk");
+            }
+            else
+            {
+                Cierra_shortcut = (IWshShortcut)shell.CreateShortcut(Environment.GetFolderPath(specialFolder) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+            }
             Cierra_shortcut.WorkingDirectory = Environment.CurrentDirectory;
             Cierra_shortcut.TargetPath = Directory.GetCurrentDirectory() + "\\OpenCyralive.exe";
             if (File.Exists(res_folder + "\\config\\brand.txt"))
@@ -523,37 +549,79 @@ namespace OpenCyralive
 
         private void oc_desktop_shortcut_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            if (File.Exists(res_folder + "\\config\\brand.txt"))
             {
-                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk"))
+                {
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk");
+                }
+                else
+                {
+                    create_shortcut(Environment.SpecialFolder.DesktopDirectory);
+                }
             }
-            else if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            else
             {
-                create_shortcut(Environment.SpecialFolder.DesktopDirectory);
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+                {
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+                }
+                else
+                {
+                    create_shortcut(Environment.SpecialFolder.DesktopDirectory);
+                }
             }
         }
 
         private void oc_startmenu_shortcut_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            if (File.Exists(res_folder + "\\config\\brand.txt"))
             {
-                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk"))
+                {
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk");
+                }
+                else
+                {
+                    create_shortcut(Environment.SpecialFolder.StartMenu);
+                }
             }
-            else if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            else
             {
-                create_shortcut(Environment.SpecialFolder.StartMenu);
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+                {
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+                }
+                else
+                {
+                    create_shortcut(Environment.SpecialFolder.StartMenu);
+                }
             }
         }
 
         private void oc_autostart_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            if (File.Exists(res_folder + "\\config\\brand.txt"))
             {
-                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk"))
+                {
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + File.ReadAllText(res_folder + "\\config\\brand.txt") + ".lnk");
+                }
+                else
+                {
+                    create_shortcut(Environment.SpecialFolder.Startup);
+                }
             }
-            else if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+            else
             {
-                create_shortcut(Environment.SpecialFolder.Startup);
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk"))
+                {
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
+                }
+                else
+                {
+                    create_shortcut(Environment.SpecialFolder.Startup);
+                }
             }
         }
 
