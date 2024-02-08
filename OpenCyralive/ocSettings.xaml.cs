@@ -159,20 +159,39 @@ namespace OpenCyralive
             IWshShortcut Cierra_shortcut = (IWshShortcut)shell.CreateShortcut(Environment.GetFolderPath(specialFolder) + "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".lnk");
             Cierra_shortcut.WorkingDirectory = Environment.CurrentDirectory;
             Cierra_shortcut.TargetPath = Directory.GetCurrentDirectory() + "\\OpenCyralive.exe";
-            if (ocConfig["Character"].ToString() != "" && File.Exists(res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico"))
+            if (File.Exists(res_folder + "\\config\\brand.txt"))
             {
-                Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico";
-                Cierra_shortcut.Description = ocConfig["Character"].ToString() + "桌宠";
-            }
-            else if (File.Exists(res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico"))
-            {
-                Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico";
-                Cierra_shortcut.Description = strings[strings.Length - 1] + "桌宠";
+                if (ocConfig["Character"].ToString() != "" && File.Exists(res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico"))
+                {
+                    Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico";
+                }
+                else if (File.Exists(res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico"))
+                {
+                    Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico";
+                }
+                else
+                {
+                    Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\appicon.ico";
+                }
+                Cierra_shortcut.Description = File.ReadAllText(res_folder + "\\config\\brand.txt");
             }
             else
             {
-                Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\appicon.ico";
-                Cierra_shortcut.Description = "OpenCyralive桌宠";
+                if (ocConfig["Character"].ToString() != "" && File.Exists(res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico"))
+                {
+                    Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico";
+                    Cierra_shortcut.Description = ocConfig["Character"].ToString() + "桌宠";
+                }
+                else if (File.Exists(res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico"))
+                {
+                    Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico";
+                    Cierra_shortcut.Description = strings[strings.Length - 1] + "桌宠";
+                }
+                else
+                {
+                    Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\appicon.ico";
+                    Cierra_shortcut.Description = "OpenCyralive桌宠";
+                }
             }
             Cierra_shortcut.Save();
         }

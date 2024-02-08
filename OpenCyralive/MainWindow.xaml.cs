@@ -57,7 +57,14 @@ namespace OpenCyralive
             InitializeComponent();
             System.Windows.Forms.Application.EnableVisualStyles();
             CyraliveOperaScript_init();
-            notifyIcon.Text = "OpenCyralive";
+            if (File.Exists(res_folder + "\\config\\brand.txt"))
+            {
+                notifyIcon.Text = File.ReadAllText(res_folder + "\\config\\brand.txt");
+            }
+            else
+            {
+                notifyIcon.Text = "OpenCyralive";
+            }
             notifyIcon.MouseClick += (s, e) =>
             {
                 if (e.Button == MouseButtons.Right)
@@ -296,6 +303,10 @@ namespace OpenCyralive
                 if (ocConfig["Bubble_font_Italic"].ToString() != "")
                 {
                     Cierra_hover_text.FontStyle = FontStyles.Italic;
+                }
+                if (File.Exists(res_folder + "\\config\\brand.txt"))
+                {
+                    Title = File.ReadAllText(res_folder + "\\config\\brand.txt");
                 }
             }
             catch (Exception ex)
