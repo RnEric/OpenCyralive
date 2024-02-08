@@ -220,7 +220,21 @@ namespace OpenCyralive
 
         private void about_Click(object sender, RoutedEventArgs e)
         {
-            new AboutOC().ShowDialog();
+            try
+            {
+                Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\specialplugins\\about\\about.dll");
+                foreach (Type type in assembly.GetExportedTypes())
+                {
+                    if (type.Name == "about_info")
+                    {
+                        type.InvokeMember("about_information", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("暂无信息", "暂无信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void os_license_Click(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
     <UseWindowsForms>True</UseWindowsForms>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <Authors>Eric Ren</Authors>
-    <Version>2.9</Version>
+    <Version>3.0</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>none</DebugType>
@@ -15,10 +15,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>none</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="res\Bluelines.jpg" />
-    <None Remove="res\Starsky.jpg" />
-  </ItemGroup>
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
       <WrapperTool>tlbimp</WrapperTool>
@@ -145,10 +141,6 @@
     <PackageReference Include="MdXaml" Version="1.26.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="res\Bluelines.jpg" />
-    <Resource Include="res\Starsky.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Update="resources\characters\佐仓花铃 %28信息工程%29\normal.png">
