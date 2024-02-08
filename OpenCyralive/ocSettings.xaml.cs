@@ -683,5 +683,20 @@ namespace OpenCyralive
                 }
             }
         }
+
+        private void oc_character_mgmt_Click(object sender, RoutedEventArgs e)
+        {
+            var dialogresult = MessageBox.Show("为避免增删角色时可能出现的问题，桌宠将关闭，操作完毕后如需继续使用桌宠请再次打开。\n\n添加角色请将对应的图片素材文件夹复制或移动到characters文件夹下，台词文件夹复制或移动到lines文件夹下。\n\n如需删除角色请删除对应的图片素材文件夹和台词文件夹。", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dialogresult == System.Windows.Forms.DialogResult.OK)
+            {
+                openThings(res_folder + "\\characters", "");
+                openThings(res_folder + "\\lines", "");
+                notifyIcon.Dispose();
+                foreach(Window window in Application.Current.Windows)
+                {
+                    window.Close();
+                }
+            }
+        }
     }
 }
