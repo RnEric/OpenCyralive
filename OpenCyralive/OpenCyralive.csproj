@@ -138,7 +138,7 @@
     <Folder Include="resources\specialplugins\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MdXaml" Version="1.26.0" />
+    <PackageReference Include="MdXaml" Version="1.27.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.1" />
   </ItemGroup>
@@ -165,6 +165,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\images\trayicon\trayicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\license\MdXaml.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\license\System.DirectoryServices.AccountManagement.txt">
