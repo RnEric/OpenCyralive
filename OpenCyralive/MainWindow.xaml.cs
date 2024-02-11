@@ -364,6 +364,7 @@ namespace OpenCyralive
                                 Cierra_hover_text_grid.Visibility = Visibility.Visible;
                                 Cierra_hover_text.Markdown = clipboardReactionMessages[new Random().Next(0, clipboardReactionMessages.Count)].ToString();
                                 get_msg_trigger();
+                                break;
                             }
                         }
                     }
