@@ -353,11 +353,10 @@ namespace OpenCyralive
                 if (File.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\clipboard.json"))
                 {
                     JsonNode jsonNode = JsonNode.Parse(File.ReadAllText(res_folder + "\\lines\\" + oc_Show_character_name() + "\\clipboard.json"));
-                    JsonArray clipboardKeywords = (JsonArray)jsonNode["keywords"];
                     JsonArray clipboardReactionMessages = (JsonArray)jsonNode["messages"];
                     if (System.Windows.Clipboard.ContainsText())
                     {
-                        foreach (string txt in clipboardKeywords.AsArray())
+                        foreach (string txt in ((JsonArray)jsonNode["keywords"]).AsArray())
                         {
                             if (System.Windows.Clipboard.GetText().Contains(txt))
                             {
