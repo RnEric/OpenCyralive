@@ -23,7 +23,7 @@ using static OpenCyralive.CyraliveOperaScript;
 using System.Reflection;
 using System.Linq;
 using Application = System.Windows.Application;
-using System.Windows.Documents;
+using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace OpenCyralive
 {
@@ -348,6 +348,27 @@ namespace OpenCyralive
                     Cierra_hover_text.Document.FontFamily = new FontFamily("Microsoft Yahei");
                 }
             }
+            Clipboard.ContentChanged += (s, e) =>
+            {
+                if (File.Exists(res_folder + "\\lines\\" + oc_Show_character_name() + "\\clipboard.json"))
+                {
+                    JsonNode jsonNode = JsonNode.Parse(File.ReadAllText(res_folder + "\\lines\\" + oc_Show_character_name() + "\\clipboard.json"));
+                    JsonArray clipboardKeywords = (JsonArray)jsonNode["keywords"];
+                    JsonArray clipboardReactionMessages = (JsonArray)jsonNode["messages"];
+                    if (System.Windows.Clipboard.ContainsText())
+                    {
+                        foreach (string txt in clipboardKeywords.AsArray())
+                        {
+                            if (System.Windows.Clipboard.GetText().Contains(txt))
+                            {
+                                Cierra_hover_text_grid.Visibility = Visibility.Visible;
+                                Cierra_hover_text.Markdown = clipboardReactionMessages[new Random().Next(0, clipboardReactionMessages.Count)].ToString();
+                                get_msg_trigger();
+                            }
+                        }
+                    }
+                }
+            };
         }
 
         private void mi_exit_Click(object sender, RoutedEventArgs e)
