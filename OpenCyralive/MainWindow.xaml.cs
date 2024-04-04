@@ -125,7 +125,7 @@ namespace OpenCyralive
                     };
                     mi_characters.Items.Add(menuItem);
                 }
-                if (Directory.GetDirectories(res_folder + "\\plugins").Length > 0)
+                if (Directory.Exists(res_folder + "\\plugins") && Directory.GetDirectories(res_folder + "\\plugins").Length > 0)
                 {
                     foreach (string folder_path in Directory.GetDirectories(res_folder + "\\plugins"))
                     {
