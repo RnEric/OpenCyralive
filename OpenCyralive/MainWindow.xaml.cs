@@ -616,13 +616,13 @@ namespace OpenCyralive
                 {
                     OCWindow.ClearValue(BorderBrushProperty);
                     OCWindow.ClearValue(BorderThicknessProperty);
+                    if (read_config_file(res_folder + "\\config\\config.json", "WindowSize") != "")
+                    {
+                        write_config_file(res_folder + "\\config\\config.json", "WindowSize", Height + "," + Width);
+                    }
                     dispatcherTimer.Stop();
                 };
                 dispatcherTimer.Start();
-            }
-            if (read_config_file(res_folder + "\\config\\config.json", "WindowSize") != "")
-            {
-                write_config_file(res_folder + "\\config\\config.json", "WindowSize", Height + "," + Width);
             }
         }
     }
