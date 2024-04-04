@@ -36,7 +36,8 @@ namespace OpenCyralive
         List<string> character_images = new List<string>();
         string[] character_name;
         bool hover_text_override;
-        DoubleAnimation txtfadein = new DoubleAnimation(0 , 1, new Duration(TimeSpan.FromMilliseconds(500)));
+        bool fullyStarted = false;
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
         void character_change(string file_path)
         {
             oc_Show.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\" + file_path, UriKind.RelativeOrAbsolute));
@@ -311,6 +312,10 @@ namespace OpenCyralive
                     Title = File.ReadAllText(res_folder + "\\config\\brand.txt");
                 }
                 DoubleAnimation doubleAnimation = new DoubleAnimation(0, 1, new Duration(TimeSpan.FromMilliseconds(700)));
+                doubleAnimation.Completed += (s, e) =>
+                {
+                    fullyStarted = true;
+                };
                 OCview.BeginAnimation(OpacityProperty, doubleAnimation);
             }
             catch (Exception ex)
@@ -601,6 +606,19 @@ namespace OpenCyralive
             {
                 Width = 340;
                 Height = 315;
+            }
+            if (fullyStarted)
+            {
+                OCWindow.BorderBrush = Brushes.Aquamarine;
+                OCWindow.BorderThickness = new Thickness(1);
+                dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+                dispatcherTimer.Tick += (s, e) =>
+                {
+                    OCWindow.ClearValue(BorderBrushProperty);
+                    OCWindow.ClearValue(BorderThicknessProperty);
+                    dispatcherTimer.Stop();
+                };
+                dispatcherTimer.Start();
             }
             if (read_config_file(res_folder + "\\config\\config.json", "WindowSize") != "")
             {
