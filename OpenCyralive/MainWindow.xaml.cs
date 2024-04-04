@@ -24,6 +24,7 @@ using System.Reflection;
 using System.Linq;
 using Application = System.Windows.Application;
 using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
+using System.Windows.Media.Animation;
 
 namespace OpenCyralive
 {
@@ -35,6 +36,7 @@ namespace OpenCyralive
         List<string> character_images = new List<string>();
         string[] character_name;
         bool hover_text_override;
+        DoubleAnimation txtfadein = new DoubleAnimation(0 , 1, new Duration(TimeSpan.FromMilliseconds(500)));
         void character_change(string file_path)
         {
             oc_Show.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\" + file_path, UriKind.RelativeOrAbsolute));
@@ -308,6 +310,8 @@ namespace OpenCyralive
                 {
                     Title = File.ReadAllText(res_folder + "\\config\\brand.txt");
                 }
+                DoubleAnimation doubleAnimation = new DoubleAnimation(0, 1, new Duration(TimeSpan.FromMilliseconds(700)));
+                OCview.BeginAnimation(OpacityProperty, doubleAnimation);
             }
             catch (Exception ex)
             {
@@ -373,11 +377,16 @@ namespace OpenCyralive
 
         private void mi_exit_Click(object sender, RoutedEventArgs e)
         {
-            notifyIcon.Dispose();
-            foreach (Window window in Application.Current.Windows)
+            DoubleAnimation doubleAnimation = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(700)));
+            doubleAnimation.Completed += (s, e) =>
             {
-                window.Close();
-            }
+                notifyIcon.Dispose();
+                foreach (Window window in Application.Current.Windows)
+                {
+                    window.Close();
+                }
+            };
+            OCview.BeginAnimation(OpacityProperty, doubleAnimation);
         }
 
         private void oc_Show_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

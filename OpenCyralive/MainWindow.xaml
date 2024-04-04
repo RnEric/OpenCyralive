@@ -9,7 +9,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome/>
     </WindowChrome.WindowChrome>
-    <Viewbox Stretch="UniformToFill">
+    <Viewbox x:Name="OCview" Stretch="UniformToFill">
         <Grid Width="340" Height="330">
             <Grid.ContextMenu>
                 <ContextMenu x:Name="oc_cm">
