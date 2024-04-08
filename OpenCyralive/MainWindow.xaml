@@ -10,7 +10,7 @@
         <WindowChrome/>
     </WindowChrome.WindowChrome>
     <Viewbox x:Name="OCview" Stretch="UniformToFill">
-        <Grid Width="340" Height="330">
+        <Grid Width="340" Height="315">
             <Grid.ContextMenu>
                 <ContextMenu x:Name="oc_cm">
                     <MenuItem x:Name="Cyralive_plugins" Header="插件"/>
