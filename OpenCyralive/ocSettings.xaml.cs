@@ -26,6 +26,7 @@ using IWshRuntimeLibrary;
 using File = System.IO.File;
 using Microsoft.VisualBasic;
 using MessageBox = System.Windows.Forms.MessageBox;
+using Wpf.Ui.Controls;
 
 namespace OpenCyralive
 {

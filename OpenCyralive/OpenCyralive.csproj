@@ -7,7 +7,7 @@
     <UseWindowsForms>True</UseWindowsForms>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <Authors>Eric Ren</Authors>
-    <Version>3.8</Version>
+    <Version>3.9</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>none</DebugType>
@@ -141,6 +141,7 @@
     <PackageReference Include="MdXaml" Version="1.27.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.3" />
+    <PackageReference Include="WPF-UI" Version="3.0.3" />
   </ItemGroup>
   <ItemGroup>
     <None Update="resources\characters\佐仓花铃 %28信息工程%29\normal.png">
@@ -174,6 +175,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\license\System.Text.Json.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\license\WPF-UI.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\lines\佐仓花铃 %28信息工程%29\normal.json">
