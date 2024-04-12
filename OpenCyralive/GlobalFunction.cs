@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Nodes;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Diagnostics;
 using static OpenCyralive.CyraliveOperaScript;
 using MdXaml;
-using System.Windows.Documents;
-using System.Windows;
-using Application = System.Windows.Application;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Windows.Media;
 
