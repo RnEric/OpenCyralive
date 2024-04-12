@@ -3,14 +3,16 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Windows;
 using System.Windows.Controls;
+using Wpf.Ui.Controls;
 using static OpenCyralive.GlobalFunction;
+using TextBlock = System.Windows.Controls.TextBlock;
 
 namespace OpenCyralive
 {
     /// <summary>
     /// ocSchedule.xaml 的交互逻辑
     /// </summary>
-    public partial class ocSchedule : Window
+    public partial class ocSchedule : FluentWindow
     {
         int i = 0;
         JsonElement read_clock = JsonDocument.Parse(File.ReadAllText(res_folder + "\\config\\time.json")).RootElement.GetProperty("clock");
