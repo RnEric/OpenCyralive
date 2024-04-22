@@ -145,7 +145,7 @@
     <PackageReference Include="MdXaml" Version="1.27.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.3" />
-    <PackageReference Include="WPF-UI" Version="3.0.3" />
+    <PackageReference Include="WPF-UI" Version="3.0.4" />
   </ItemGroup>
   <ItemGroup>
     <None Update="resources\characters\佐仓花铃 %28信息工程%29\normal.png">
