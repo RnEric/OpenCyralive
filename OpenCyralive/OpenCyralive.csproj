@@ -131,7 +131,11 @@
     </None>
 	-->
   
+    <Folder Include="resources\characters\谢拉 露妮丝\CopyrightInfo\" />
+  
     <Folder Include="resources\lines\艾米利亚 希耶拉 诺娃 %28航空航天%29\" />
+  
+    <Folder Include="resources\lines\谢拉 露妮丝\SpecialThanks\" />
   
     <Folder Include="resources\plugins\" />
   
@@ -154,6 +158,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\characters\诺亚 弗洛姆 史密斯 %28自动化%29\normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\characters\谢拉 露妮丝\CopyrightInfo\Copyright.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\characters\谢拉 露妮丝\normal.png">
@@ -223,6 +230,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\lines\谢拉 露妮丝\normal.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\lines\谢拉 露妮丝\SpecialThanks\SpecialThanks.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\lines\谢拉 露妮丝\startup\1.json">
