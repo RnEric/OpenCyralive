@@ -13,16 +13,16 @@
         <Grid Width="340" Height="315">
             <Grid.ContextMenu>
                 <ContextMenu x:Name="oc_cm">
-                    <MenuItem x:Name="Cyralive_plugins" Header="插件"/>
+                    <MenuItem x:Name="Cyralive_plugins" Header="{DynamicResource mi_plugins}"/>
                     <Separator/>
-                    <MenuItem Header="设置" x:Name="mi_settings" Click="mi_settings_Click"/>
-                    <MenuItem Header="切换角色" x:Name="mi_characters"/>
+                    <MenuItem Header="{DynamicResource mi_settings}" x:Name="mi_settings" Click="mi_settings_Click"/>
+                    <MenuItem Header="{DynamicResource mi_characters}" x:Name="mi_characters"/>
                     <Separator/>
-                    <MenuItem Header="移动" x:Name="mi_drag" Click="mi_drag_Click"/>
-                    <MenuItem Header="最小化到任务栏" x:Name="mi_minimize_tb" Click="mi_minimize_tb_Click"/>
-                    <MenuItem Header="最小化到托盘" x:Name="mi_minimize_tray" Click="mi_minimize_tray_Click"/>
+                    <MenuItem Header="{DynamicResource mi_drag}" x:Name="mi_drag" Click="mi_drag_Click"/>
+                    <MenuItem Header="{DynamicResource mi_minimize_tb}" x:Name="mi_minimize_tb" Click="mi_minimize_tb_Click"/>
+                    <MenuItem Header="{DynamicResource mi_minimize_tray}" x:Name="mi_minimize_tray" Click="mi_minimize_tray_Click"/>
                     <Separator/>
-                    <MenuItem Header="退出" x:Name="mi_exit" Click="mi_exit_Click"/>
+                    <MenuItem Header="{DynamicResource mi_exit}" x:Name="mi_exit" Click="mi_exit_Click"/>
                 </ContextMenu>
             </Grid.ContextMenu>
             <Grid x:Name="oc_Stage">

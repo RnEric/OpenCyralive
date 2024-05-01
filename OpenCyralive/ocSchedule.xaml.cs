@@ -27,7 +27,7 @@ namespace OpenCyralive
                     TextBlock textBlock = (TextBlock)oclock;
                     if (textBlock.Name != "Schedule_time")
                     {
-                        textBlock.Text = i.ToString() + "点钟: ";
+                        textBlock.Text = i.ToString() + Application.Current.FindResource("o_clock");
                         i++;
                     }
                 }
@@ -38,12 +38,12 @@ namespace OpenCyralive
                 if (get_controls is ComboBox)
                 {
                     ComboBox comboBox = (ComboBox)get_controls;
-                    comboBox.Items.Add("深夜");
-                    comboBox.Items.Add("早晨");
-                    comboBox.Items.Add("中午");
-                    comboBox.Items.Add("下午");
-                    comboBox.Items.Add("晚上");
-                    comboBox.Items.Add("自定义");
+                    comboBox.Items.Add(Application.Current.FindResource("night"));
+                    comboBox.Items.Add(Application.Current.FindResource("morning"));
+                    comboBox.Items.Add(Application.Current.FindResource("noon"));
+                    comboBox.Items.Add(Application.Current.FindResource("afternoon"));
+                    comboBox.Items.Add(Application.Current.FindResource("evening"));
+                    comboBox.Items.Add(Application.Current.FindResource("customized"));
                     if (read_clock[i].ToString() == "night")
                     {
                         comboBox.SelectedIndex = 0;

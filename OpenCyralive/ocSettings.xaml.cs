@@ -18,6 +18,9 @@ using IWshRuntimeLibrary;
 using File = System.IO.File;
 using MessageBox = System.Windows.Forms.MessageBox;
 using Wpf.Ui.Controls;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Markup;
 
 namespace OpenCyralive
 {
@@ -27,7 +30,9 @@ namespace OpenCyralive
     public partial class ocSettings : FluentWindow
     {
         List<string> fonts = new List<string>();
-        string[] fontsizes = { "13（默认）", "14", "16", "18" };
+        string[] fontsizes = { "13" + Application.Current.FindResource("default"), "14", "16", "18" };
+        string[] langs = Directory.GetFiles(res_folder + "\\lang");
+        int selectedLang;
         public ocSettings()
         {
             InitializeComponent();
@@ -122,6 +127,32 @@ namespace OpenCyralive
             else
             {
                 oc_hemi.SelectedIndex = 1;
+            }
+            foreach (string langfile in langs)
+            {
+                ComboBoxItem comboBoxItem = new ComboBoxItem();
+                FileStream fileStream = new FileStream(langfile, FileMode.Open);
+                comboBoxItem.Content = ((ResourceDictionary)XamlReader.Load(fileStream))["displayName"];
+                oc_language.Items.Add(comboBoxItem);
+                fileStream.Close();
+            }
+            if (ocConfig["Culture"].ToString() != "")
+            {
+                selectedLang = Array.IndexOf(langs, res_folder + "\\lang\\" + ocConfig["Culture"].ToString() + ".xaml");
+                oc_language.SelectedIndex = selectedLang;
+            }
+            else
+            {
+                if (File.Exists(res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml"))
+                {
+                    selectedLang = Array.IndexOf(langs, res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml");
+                    oc_language.SelectedIndex = selectedLang;
+                }
+                else
+                {
+                    selectedLang = Array.IndexOf(langs, res_folder + "\\lang\\zh-CN.xaml");
+                    oc_language.SelectedIndex = selectedLang;
+                }
             }
             if (File.Exists(res_folder + "\\config\\brand.txt"))
             {
@@ -494,7 +525,7 @@ namespace OpenCyralive
             {
                 if (window.GetType() == typeof(MainWindow))
                 {
-                    if (((ComboBox)sender).Text.Contains("默认"))
+                    if (((ComboBox)sender).Text.Contains(Application.Current.FindResource("default").ToString()))
                     {
                         if (read_config_file(res_folder + "\\config\\config.json", "Bubble_font_size") != "")
                         {
@@ -687,6 +718,37 @@ namespace OpenCyralive
                 foreach(Window window in Application.Current.Windows)
                 {
                     window.Close();
+                }
+            }
+        }
+
+        private void oc_language_DropDownClosed(object sender, EventArgs e)
+        {
+            if (oc_language.SelectedIndex != selectedLang)
+            {
+                if (oc_language.SelectedIndex == Array.IndexOf(langs, res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml"))
+                {
+                    write_config_file(res_folder + "\\config\\config.json", "Culture", "");
+                    FileStream fileStream = new FileStream(langs[selectedLang], FileMode.Open);
+                    FileStream fileStream1 = new FileStream(res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml", FileMode.Open);
+                    Application.Current.Resources.MergedDictionaries.Remove((ResourceDictionary)XamlReader.Load(fileStream));
+                    Application.Current.Resources.MergedDictionaries.Add((ResourceDictionary)XamlReader.Load(fileStream1));
+                    fileStream.Close();
+                    fileStream1.Close();
+                    selectedLang = oc_language.SelectedIndex;
+                }
+                else
+                {
+                    string[] strings = Regex.Split(langs[oc_language.SelectedIndex], @"\\");
+                    string[] strings1 = Regex.Split(strings[strings.Length - 1], "\\.");
+                    write_config_file(res_folder + "\\config\\config.json", "Culture", strings1[0]);
+                    FileStream fileStream = new FileStream(langs[selectedLang].ToString(), FileMode.Open);
+                    FileStream fileStream1 = new FileStream(res_folder + "\\lang\\" + strings1[0] + ".xaml", FileMode.Open);
+                    Application.Current.Resources.MergedDictionaries.Remove((ResourceDictionary)XamlReader.Load(fileStream));
+                    Application.Current.Resources.MergedDictionaries.Add((ResourceDictionary)XamlReader.Load(fileStream1));
+                    fileStream.Close();
+                    fileStream1.Close();
+                    selectedLang = oc_language.SelectedIndex;
                 }
             }
         }

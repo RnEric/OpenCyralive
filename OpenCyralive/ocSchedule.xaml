@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenCyralive"
         mc:Ignorable="d"
-        Title="作息时间" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource txt_schedule}" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ui:TitleBar Title="作息时间"/>
+        <ui:TitleBar Title="{DynamicResource txt_schedule}"/>
         <Grid Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <Grid x:Name="SWindowContent" Margin="10,10,10,10">
@@ -40,7 +40,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="Schedule_time" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="修改作息时间: " VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock x:Name="Schedule_time" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="{DynamicResource txt_change_schedule}" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                     <TextBlock HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center"/>
                     <ComboBox HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Width="120"/>
                     <TextBlock HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0"  TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center"/>
@@ -89,9 +89,9 @@
                     <ComboBox HorizontalAlignment="Left" Grid.Row="7" Grid.Column="7" VerticalAlignment="Top" Width="120"/>
                     <TextBlock HorizontalAlignment="Left" Grid.Row="8" Grid.Column="6" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center"/>
                     <ComboBox HorizontalAlignment="Left" Grid.Row="8" Grid.Column="7" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="confirm_change" Grid.Row="9" Grid.Column="9" Content="确定" HorizontalAlignment="Left" VerticalAlignment="Top" Click="confirm_change_Click"/>
-                    <Button x:Name="cancel_change" Grid.Row="10" Grid.Column="10" Content="取消" HorizontalAlignment="Left" VerticalAlignment="Top" Click="cancel_change_Click" Margin="5,0,0,0"/>
-                    <Button x:Name="open_schedule_file" Grid.Row="10" Grid.Column="7" Content="打开配置文件" HorizontalAlignment="Left" VerticalAlignment="Top" Click="open_schedule_file_Click"/>
+                    <Button x:Name="confirm_change" Grid.Row="9" Grid.Column="9" Content="{DynamicResource confirm_change}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="confirm_change_Click"/>
+                    <Button x:Name="cancel_change" Grid.Row="10" Grid.Column="10" Content="{DynamicResource cancel_change}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="cancel_change_Click" Margin="5,0,0,0"/>
+                    <Button x:Name="open_schedule_file" Grid.Row="10" Grid.Column="7" Content="{DynamicResource open_schedule_file}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="open_schedule_file_Click"/>
                 </Grid>
             </ScrollViewer>
         </Grid>
