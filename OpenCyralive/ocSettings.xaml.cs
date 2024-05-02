@@ -671,7 +671,7 @@ namespace OpenCyralive
 
         private void oc_reset_default_Click(object sender, RoutedEventArgs e)
         {
-            var messageBox = MessageBox.Show("您确定要恢复默认设置吗?", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var messageBox = MessageBox.Show(Application.Current.FindResource("rst_msg").ToString(), Application.Current.FindResource("rst_warn").ToString(), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (messageBox == System.Windows.Forms.DialogResult.Yes)
             {
                 Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\specialplugins\\resetdefault\\resetdefault.dll");

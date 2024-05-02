@@ -55,4 +55,6 @@
     <s:String x:Key="oc_license">许可证/版权信息</s:String>
     <s:String x:Key="oc_moreinfo">更多信息</s:String>
     <s:String x:Key="txt_language">语言: </s:String>
+    <s:String x:Key="rst_warn">警告</s:String>
+    <s:String x:Key="rst_msg">您确定要恢复默认设置吗?</s:String>
 </ResourceDictionary>
