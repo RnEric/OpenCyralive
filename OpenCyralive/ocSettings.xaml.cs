@@ -229,17 +229,14 @@ namespace OpenCyralive
                 if (ocConfig["Character"].ToString() != "" && File.Exists(res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico"))
                 {
                     Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + read_config_file(res_folder + "\\config\\config.json", "Character") + "\\appicon.ico";
-                    Cierra_shortcut.Description = ocConfig["Character"].ToString() + "桌宠";
                 }
                 else if (File.Exists(res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico"))
                 {
                     Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\" + strings[strings.Length - 1] + "\\appicon.ico";
-                    Cierra_shortcut.Description = strings[strings.Length - 1] + "桌宠";
                 }
                 else
                 {
                     Cierra_shortcut.IconLocation = Directory.GetCurrentDirectory() + "\\" + res_folder + "\\images\\appicon\\appicon.ico";
-                    Cierra_shortcut.Description = "OpenCyralive桌宠";
                 }
             }
             Cierra_shortcut.Save();
