@@ -118,7 +118,7 @@ namespace OpenCyralive
             }
             write_clock_file["clock"] = write_clock;
             File.WriteAllText(res_folder + "\\config\\time.json", write_clock_file.ToString());
-            System.Windows.Forms.MessageBox.Show("作息时间已修改", "修改成功", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+            System.Windows.Forms.MessageBox.Show(Application.Current.FindResource("schedule_changed").ToString(), Application.Current.FindResource("msg_info").ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
             Close();
         }
 
