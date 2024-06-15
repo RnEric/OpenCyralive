@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Collections.Generic;
 using System.Windows;
 using Application = System.Windows.Application;
+using System.Security.Cryptography;
 
 namespace OpenCyralive
 {
@@ -41,7 +42,7 @@ namespace OpenCyralive
             try
             {
                 JsonDocument message_texts = JsonDocument.Parse(File.ReadAllText(file_path));
-                string message_text = message_texts.RootElement.GetProperty("messages")[new Random().Next(0, message_texts.RootElement.GetProperty("messages").GetArrayLength())].ToString();
+                string message_text = message_texts.RootElement.GetProperty("messages")[RandomNumberGenerator.GetInt32(message_texts.RootElement.GetProperty("messages").GetArrayLength())].ToString();
                 string final_text = string.Empty;
                 bool msgorfinal()
                 {
