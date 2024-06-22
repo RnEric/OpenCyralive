@@ -210,6 +210,9 @@
     <None Update="resources\license\MdXaml.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="resources\license\Mime.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\license\System.DirectoryServices.AccountManagement.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -217,6 +220,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\license\WPF-UI.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\license\XamlAnimatedGif.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\lines\佐仓花铃 %28信息工程%29\normal.json">
