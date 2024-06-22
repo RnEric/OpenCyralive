@@ -27,6 +27,9 @@ using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 using System.Windows.Media.Animation;
 using System.Globalization;
 using System.Windows.Markup;
+using HeyRed.Mime;
+using XamlAnimatedGif;
+using Windows.Devices.Perception;
 
 namespace OpenCyralive
 {
@@ -42,19 +45,45 @@ namespace OpenCyralive
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         void character_change(string file_path)
         {
-            oc_Show.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\" + file_path, UriKind.RelativeOrAbsolute));
+            if (MimeGuesser.GuessMimeType(file_path) == "image/gif")
+            {
+                AnimationBehavior.SetRepeatBehavior(oc_Show, RepeatBehavior.Forever);
+                AnimationBehavior.SetSourceUri(oc_Show, new Uri("file://" + Directory.GetCurrentDirectory() + "/" + file_path));
+            }
+            else
+            {
+                oc_Show.ClearValue(AnimationBehavior.RepeatBehaviorProperty);
+                oc_Show.ClearValue(AnimationBehavior.SourceUriProperty);
+                oc_Show.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\" + file_path, UriKind.RelativeOrAbsolute));
+            }
         }
 
         string character_status()
         {
-            string[] character_status_unsanitized = Regex.Split(oc_Show.Source.ToString(), "/");
+            string[] character_status_unsanitized;
+            if (AnimationBehavior.GetSourceUri(oc_Show) != null)
+            {
+                character_status_unsanitized = Regex.Split(AnimationBehavior.GetSourceUri(oc_Show).ToString(), "/");
+            }
+            else
+            {
+                character_status_unsanitized = Regex.Split(oc_Show.Source.ToString(), "/");
+            }
             string[] character_status = Regex.Split(character_status_unsanitized[character_status_unsanitized.Length - 1], "\\.");
             return character_status[0];
         }
 
         string oc_Show_character_name()
         {
-            string[] oc_Show_character_name = Regex.Split(oc_Show.Source.ToString(), "/");
+            string[] oc_Show_character_name;
+            if (AnimationBehavior.GetSourceUri(oc_Show) == null)
+            {
+                oc_Show_character_name = Regex.Split(oc_Show.Source.ToString(), "/");
+            }
+            else
+            {
+                oc_Show_character_name = Regex.Split(AnimationBehavior.GetSourceUri(oc_Show).ToString(), "/");
+            }
             return oc_Show_character_name[oc_Show_character_name.Length - 2];
         }
         public MainWindow()
