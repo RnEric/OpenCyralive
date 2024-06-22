@@ -29,7 +29,6 @@ using System.Globalization;
 using System.Windows.Markup;
 using HeyRed.Mime;
 using XamlAnimatedGif;
-using Windows.Devices.Perception;
 
 namespace OpenCyralive
 {
