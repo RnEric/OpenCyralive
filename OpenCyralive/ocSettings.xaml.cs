@@ -290,9 +290,9 @@ namespace OpenCyralive
                 Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\specialplugins\\about\\about.dll");
                 foreach (Type type in assembly.GetExportedTypes())
                 {
-                    if (type.Name == "about_info")
+                    if (type.Name == "plugin_base")
                     {
-                        type.InvokeMember("about_information", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
+                        type.InvokeMember("pluginStart", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
                     }
                 }
             }
@@ -662,9 +662,9 @@ namespace OpenCyralive
             Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\specialplugins\\moreinfo\\moreinfo.dll");
             foreach (Type type in assembly.GetExportedTypes())
             {
-                if (type.Name == "more_info")
+                if (type.Name == "plugin_base")
                 {
-                    type.InvokeMember("more_information", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
+                    type.InvokeMember("pluginStart", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null);
                 }
             }
         }
@@ -677,9 +677,9 @@ namespace OpenCyralive
                 Assembly assembly = Assembly.LoadFrom(Directory.GetCurrentDirectory() + "\\" + res_folder + "\\specialplugins\\resetdefault\\resetdefault.dll");
                 foreach (Type type in assembly.GetExportedTypes())
                 {
-                    if (type.Name == "oc_reset_default")
+                    if (type.Name == "plugin_base")
                     {
-                        if ((bool)type.InvokeMember("oc_reset_default_conf", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
+                        if ((bool)type.InvokeMember("pluginStart", BindingFlags.InvokeMethod, null, Activator.CreateInstance(type), null))
                         {
                             notifyIcon.Dispose();
                             Application.Current.Shutdown();
