@@ -339,20 +339,27 @@ namespace OpenCyralive
                 }
                 if (ocConfig["Culture"].ToString() != "")
                 {
-                    FileStream fileStream;
-                    if (File.Exists(res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml"))
+                    try
                     {
-                        fileStream = new FileStream(res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml", FileMode.Open);
+                        FileStream fileStream;
+                        if (File.Exists(res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml"))
+                        {
+                            fileStream = new FileStream(res_folder + "\\lang\\" + CultureInfo.CurrentCulture + ".xaml", FileMode.Open);
+                        }
+                        else
+                        {
+                            fileStream = new FileStream(res_folder + "\\lang\\zh-CN.xaml", FileMode.Open);
+                        }
+                        FileStream fileStream1 = new FileStream(res_folder + "\\lang\\" + ocConfig["Culture"].ToString() + ".xaml", FileMode.Open);
+                        Application.Current.Resources.MergedDictionaries.Remove((ResourceDictionary)XamlReader.Load(fileStream));
+                        Application.Current.Resources.MergedDictionaries.Add((ResourceDictionary)XamlReader.Load(fileStream1));
+                        fileStream.Close();
+                        fileStream1.Close();
                     }
-                    else
+                    catch
                     {
-                        fileStream = new FileStream(res_folder + "\\lang\\zh-CN.xaml", FileMode.Open);
+
                     }
-                    FileStream fileStream1 = new FileStream(res_folder + "\\lang\\" + ocConfig["Culture"].ToString() + ".xaml", FileMode.Open);
-                    Application.Current.Resources.MergedDictionaries.Remove((ResourceDictionary)XamlReader.Load(fileStream));
-                    Application.Current.Resources.MergedDictionaries.Add((ResourceDictionary)XamlReader.Load(fileStream1));
-                    fileStream.Close();
-                    fileStream1.Close();
                 }
                 if (File.Exists(res_folder + "\\config\\brand.txt"))
                 {
