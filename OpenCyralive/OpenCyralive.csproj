@@ -168,6 +168,12 @@
     <PackageReference Include="XamlAnimatedGif" Version="2.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="resources\characters\Clauvio休闲装\CopyrightInfo\Copyright.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\characters\Clauvio休闲装\normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\characters\佐仓花铃 %28信息工程%29\normal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -223,6 +229,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\license\XamlAnimatedGif.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\lines\Clauvio休闲装\normal.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\lines\佐仓花铃 %28信息工程%29\normal.json">
