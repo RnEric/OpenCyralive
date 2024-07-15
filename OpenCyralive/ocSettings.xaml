@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenCyralive"
         mc:Ignorable="d"
-        Title="{DynamicResource wnd_oc_settings}" Height="550" Width="800" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource wnd_oc_settings}" Height="550" Width="850" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -50,7 +50,7 @@
                     <CheckBox Grid.Row="1" Grid.Column="1" Margin="5,0,0,0" x:Name="oc_hold_size" Content="{DynamicResource oc_hold_size}" Click="oc_hold_size_Click"/>
                     <CheckBox Grid.Row="1" Grid.Column="2" Margin="5,0,0,0" x:Name="oc_topmost" Content="{DynamicResource oc_topmost}" Click="oc_topmost_Click"/>
                     <CheckBox x:Name="oc_transparent_window" Margin="5,0,0,0" Grid.Row="2" Grid.Column="0"  Content="{DynamicResource oc_transparent_window}" Click="oc_transparent_window_Click"/>
-                    <CheckBox x:Name="oc_translucent" Margin="5,0,0,0" Grid.Row="2" Grid.Column="1" Content="{DynamicResource oc_translucent}" ToolTip="鼠标移出桌宠形象时，桌宠形象变为半透明。" Click="oc_translucent_Click"/>
+                    <CheckBox x:Name="oc_translucent" Margin="5,0,0,0" Grid.Row="2" Grid.Column="1" Content="{DynamicResource oc_translucent}" Click="oc_translucent_Click"/>
                     <CheckBox x:Name="oc_tb_show" Margin="5,0,0,0" Grid.Row="2" Grid.Column="2" Content="{DynamicResource oc_tb_show}" Click="oc_tb_show_Click"/>
                     <TextBlock Text="{DynamicResource txt_language}" Grid.Row="3" VerticalAlignment="Center"/>
                     <ComboBox x:Name="oc_language" Grid.Row="3" Grid.Column="1" Margin="0,2,0,2" DropDownClosed="oc_language_DropDownClosed" />
