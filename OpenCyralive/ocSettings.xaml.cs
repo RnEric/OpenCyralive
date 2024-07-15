@@ -30,7 +30,7 @@ namespace OpenCyralive
     public partial class ocSettings : FluentWindow
     {
         List<string> fonts = new List<string>();
-        string[] fontsizes = { "13" + Application.Current.FindResource("default"), "14", "16", "18" };
+        string[] fontsizes = { "13", "14", "16", "18" };
         string[] langs = Directory.GetFiles(res_folder + "\\lang");
         int selectedLang;
         public ocSettings()
@@ -522,25 +522,13 @@ namespace OpenCyralive
             {
                 if (window.GetType() == typeof(MainWindow))
                 {
-                    if (((ComboBox)sender).Text.Contains(Application.Current.FindResource("default").ToString()))
+
+                    if (oc_msg_font_size.SelectedIndex != Array.IndexOf(fontsizes, (window as MainWindow).Cierra_hover_text.Document.FontSize.ToString()))
                     {
-                        if (read_config_file(res_folder + "\\config\\config.json", "Bubble_font_size") != "")
-                        {
-                            write_config_file(res_folder + "\\config\\config.json", "Bubble_font_size", "");
-                        }
-                        (window as MainWindow).Cierra_hover_text.Document.FontSize = 13;
-                        fontSize = 0;
+                        write_config_file(res_folder + "\\config\\config.json", "Bubble_font_size", ((ComboBox)sender).Text);
+                        (window as MainWindow).Cierra_hover_text.Document.FontSize = Convert.ToDouble(((ComboBox)sender).Text);
+                        fontSize = Convert.ToDouble(((ComboBox)sender).Text);
                         (window as MainWindow).Cierra_hover_text_grid.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        if (oc_msg_font_size.SelectedIndex != Array.IndexOf(fontsizes, (window as MainWindow).Cierra_hover_text.Document.FontSize.ToString()))
-                        {
-                            write_config_file(res_folder + "\\config\\config.json", "Bubble_font_size", ((ComboBox)sender).Text);
-                            (window as MainWindow).Cierra_hover_text.Document.FontSize = Convert.ToDouble(((ComboBox)sender).Text);
-                            fontSize = Convert.ToDouble(((ComboBox)sender).Text);
-                            (window as MainWindow).Cierra_hover_text_grid.Visibility = Visibility.Visible;
-                        }
                     }
                 }
             }
@@ -712,7 +700,7 @@ namespace OpenCyralive
                 openThings(res_folder + "\\characters", "");
                 openThings(res_folder + "\\lines", "");
                 notifyIcon.Dispose();
-                foreach(Window window in Application.Current.Windows)
+                foreach (Window window in Application.Current.Windows)
                 {
                     window.Close();
                 }

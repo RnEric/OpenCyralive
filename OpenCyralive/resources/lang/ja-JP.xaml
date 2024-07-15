@@ -35,8 +35,7 @@
     <s:String x:Key="txt_bubble_font">对话气泡字体: </s:String>
     <s:String x:Key="oc_msg_font_bold">加粗</s:String>
     <s:String x:Key="oc_msg_font_italic">斜体</s:String>
-    <s:String x:Key="txt_bubble_font_size">对话框气泡字体大小: </s:String>
-    <s:String x:Key="default">（默认）</s:String>
+    <s:String x:Key="txt_bubble_font_size">对话框气泡字体大小:</s:String>
     <s:String x:Key="txt_hemi">地区设置: </s:String>
     <s:String x:Key="oc_hemi_north">北半球</s:String>
     <s:String x:Key="oc_hemi_south">南半球</s:String>
