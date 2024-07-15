@@ -27,7 +27,7 @@ namespace OpenCyralive
                     TextBlock textBlock = (TextBlock)oclock;
                     if (textBlock.Name != "Schedule_time")
                     {
-                        textBlock.Text = i.ToString() + Application.Current.FindResource("o_clock");
+                        textBlock.Text = i.ToString() + " " + Application.Current.FindResource("o_clock");
                         i++;
                     }
                 }
