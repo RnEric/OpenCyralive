@@ -57,7 +57,7 @@
     <s:String x:Key="rst_warn">Warning</s:String>
     <s:String x:Key="rst_msg">Reset to default settings?</s:String>
     <s:String x:Key="msg_info">Notice</s:String>
-    <s:String x:Key="msg_plugin_mgmt">为避免安装与卸载插件时可能出现的问题，桌宠将关闭，操作完毕后如需继续使用桌宠请再次打开。如需安装插件，请将插件文件夹复制或移动到此目录下。注意：插件文件夹名必须和插件主文件名称一致，如需卸载插件，删除此目录下对应文件夹即可。</s:String>
-    <s:String x:Key="msg_character_mgmt">为避免增删角色时可能出现的问题，桌宠将关闭，操作完毕后如需继续使用桌宠请再次打开。添加角色请将对应的图片素材文件夹复制或移动到characters文件夹下，台词文件夹复制或移动到lines文件夹下。如需删除角色请删除对应的图片素材文件夹和台词文件夹。</s:String>
+    <s:String x:Key="msg_plugin_mgmt">OpenCyralive will close. Install plugin by copying plugin folders to resources\plugins folder, uninstall plugin by deleting plugin folders under resources\plugins folder.</s:String>
+    <s:String x:Key="msg_character_mgmt">OpenCyralive will close. Add character by copying character image folders to resources\characters folder and copying lines to resources\lines folder, delete character by deleting relevant files.</s:String>
     <s:String x:Key="schedule_changed">Schedule changed</s:String>
 </ResourceDictionary>
