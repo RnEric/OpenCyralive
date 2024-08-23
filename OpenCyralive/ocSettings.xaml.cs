@@ -297,7 +297,7 @@ namespace OpenCyralive
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
