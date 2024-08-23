@@ -19,7 +19,6 @@ using File = System.IO.File;
 using MessageBox = System.Windows.Forms.MessageBox;
 using Wpf.Ui.Controls;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Markup;
 
 namespace OpenCyralive
@@ -296,9 +295,9 @@ namespace OpenCyralive
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("暂无信息", "暂无信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
