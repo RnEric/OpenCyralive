@@ -9,9 +9,6 @@ using static OpenCyralive.CyraliveOperaScript;
 using MdXaml;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Windows.Media;
-using System.Collections.Generic;
-using System.Windows;
-using Application = System.Windows.Application;
 using System.Security.Cryptography;
 
 namespace OpenCyralive
