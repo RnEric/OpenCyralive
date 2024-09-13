@@ -17,7 +17,6 @@ using System.Reflection;
 using IWshRuntimeLibrary;
 using File = System.IO.File;
 using MessageBox = System.Windows.Forms.MessageBox;
-using Wpf.Ui.Controls;
 using System.Globalization;
 using System.Windows.Markup;
 
@@ -26,7 +25,7 @@ namespace OpenCyralive
     /// <summary>
     /// ocSettings.xaml 的交互逻辑
     /// </summary>
-    public partial class ocSettings : FluentWindow
+    public partial class ocSettings : Window
     {
         List<string> fonts = new List<string>();
         string[] fontsizes = { "13", "14", "16", "18" };
